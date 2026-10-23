@@ -1,0 +1,84 @@
+name: Compilar APK Lion Trader
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lion-apk-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Organizar los archivos ya subidos
+        run: |
+          mkdir -p compilacion/LionTraderAndroidStudio/android/src/com/liontrader/android
+          mkdir -p compilacion/LionTraderAndroidStudio/android/res/drawable
+          mkdir -p compilacion/LionTraderAndroidStudio/android/res/values
+          mkdir -p compilacion/LionTraderAndroidStudio/android/assets
+          mkdir -p compilacion/LionTraderAndroidStudio/gradle/wrapper
+          cp settings.gradle gradle.properties gradlew gradlew.bat compilacion/LionTraderAndroidStudio/
+          cp gradle-wrapper.jar gradle-wrapper.properties compilacion/LionTraderAndroidStudio/gradle/wrapper/
+          cp build.gradle AndroidManifest.xml compilacion/LionTraderAndroidStudio/android/
+          cp MainActivity.java NavigationPolicy.java compilacion/LionTraderAndroidStudio/android/src/com/liontrader/android/
+          cp styles.xml compilacion/LionTraderAndroidStudio/android/res/values/
+          cp ic_lion.xml compilacion/LionTraderAndroidStudio/android/res/drawable/
+          cp operations.html compilacion/LionTraderAndroidStudio/android/assets/
+          cat > compilacion/LionTraderAndroidStudio/build.gradle <<'GRADLE'
+          plugins {
+              id 'com.android.application' version '8.9.2' apply false
+          }
+          GRADLE
+
+      - name: Preparar Android SDK35
+        run: |
+          test -n "$ANDROID_HOME"
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
+
+      - name: Compilar y verificar firma
+        working-directory: compilacion/LionTraderAndroidStudio
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon --console=plain :app:verificarApkDebug 2>&1 | tee compilacion-android.log
+
+      - name: Preparar descarga
+        run: |
+          mkdir salida
+          cp compilacion/LionTraderAndroidStudio/android/build/outputs/apk/debug/app-debug.apk salida/LION_TRADER_29_8_0_PRUEBA.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs salida/LION_TRADER_29_8_0_PRUEBA.apk > salida/VERIFICACION_FIRMA.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt2" dump badging salida/LION_TRADER_29_8_0_PRUEBA.apk > salida/FICHA_APK.txt
+          cd salida
+          sha256sum LION_TRADER_29_8_0_PRUEBA.apk > SHA256.txt
+
+      - name: Guardar APK instalable de prueba
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: LION_TRADER_29_8_0_APK_PRUEBA
+          path: salida/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
+      - name: Guardar log si falla
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: LION_TRADER_LOG_COMPILACION
+          path: compilacion/LionTraderAndroidStudio/compilacion-android.log
+          if-no-files-found: ignore
+          retention-days: 7
