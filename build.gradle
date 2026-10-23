@@ -1,0 +1,38 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'com.liontrader.android'
+    compileSdk 35
+    buildToolsVersion '35.0.0'
+    defaultConfig {
+        applicationId 'com.liontrader.android'
+        minSdk 26
+        targetSdk 35
+        versionCode 29800
+        versionName '29.8.0'
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        release { minifyEnabled false }
+    }
+}
+
+tasks.register('verificarApkDebug', JavaExec) {
+    dependsOn 'assembleDebug'
+    mainClass = 'com.android.apksigner.ApkSignerTool'
+    doFirst {
+        classpath = files(new File(android.sdkDirectory, 'build-tools/35.0.0/lib/apksigner.jar'))
+        args 'verify', '--verbose', '--print-certs', layout.buildDirectory.file('outputs/apk/debug/app-debug.apk').get().asFile.absolutePath
+    }
+}

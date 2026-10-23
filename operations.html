@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es"><head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-NCZSDnESa9Qy+aI6bUvsHdHzTFcVhNcKEcvVpr+dyOQ='; style-src 'sha256-5yCEylUG6L7GRgpyUwXgNHpnGMt/sxLme+tba5O2M2c='; connect-src https://lion-trade-demo.arroyovargass.workers.dev; base-uri 'none'; form-action 'none'; object-src 'none'"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lion Trader · Operativa</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#0b1019;color:#e8edf5}*{box-sizing:border-box}body{max-width:1240px;margin:auto;padding:24px}header{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid #263246;padding-bottom:18px}h1{font-size:26px;margin:0}h2{font-size:18px}small,.muted{color:#9eb0c7}a{color:#a9cbff}.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0}button,input,select{font:inherit;border-radius:8px;border:1px solid #354259;padding:10px;background:#172235;color:inherit}button{cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}.buy{border-color:#35b78b;color:#65e0b0}.sell{border-color:#e4767e;color:#ffa4aa}.real{border-color:#d7b365;color:#e6c581}input{min-width:240px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:14px}.card,.panel{background:#121b2a;border:1px solid #29374d;border-radius:12px;padding:16px}.card{min-width:0;overflow-wrap:anywhere}.signal-confirmed{border-color:#35b78b}.signal-watch{border-color:#d7b365}.signal-blocked{border-color:#e4767e}.visual-notice{position:sticky;top:8px;z-index:5;background:#16372d;border:1px solid #65e0b0;border-radius:12px;padding:12px;margin:12px 0;box-shadow:0 4px 20px #0008}.visual-notice p{margin:8px 0;overflow-wrap:anywhere}#opportunitiesPanel{margin:16px 0}#opportunitiesSummary{line-height:1.6}button[aria-pressed="true"]{border-color:#65e0b0;background:#173b32}.timing{display:block;line-height:1.7;font-variant-numeric:tabular-nums}.card h3{margin:0 0 8px}.tag{font-size:12px;padding:4px 8px;background:#23344d;border-radius:14px;display:inline-block}.warn{color:#edc881}.error{color:#ff9c9c}#status{white-space:pre-wrap;margin:12px 0}#alerts li{margin:8px 0}.layout{display:grid;grid-template-columns:1fr 340px;gap:18px}.prices{font-variant-numeric:tabular-nums;font-size:14px;line-height:1.8}.notice{font-size:14px;line-height:1.5}dialog{max-width:560px;width:95%;border:1px solid #3d506e;background:#121b2a;color:inherit;border-radius:12px;padding:24px}dialog::backdrop{background:#000a}dialog pre{white-space:pre-wrap;font:inherit;line-height:1.7}#account{font-size:14px;line-height:1.7}.check{display:flex;align-items:center;gap:8px}.check input{min-width:0}@media(max-width:850px){.layout{grid-template-columns:1fr}body{padding:16px}header{align-items:flex-start;flex-direction:column}}
+</style></head><body>
+<header><div><h1>Lion Trader</h1><small>Análisis 24/7 · Confirmaciones desde 90/100 · Demo automática</small></div><a href="https://capital.com/" target="_self" rel="noopener noreferrer">Abrir Capital.com REAL ↗</a></header>
+<div class="controls"><input id="token" type="password" placeholder="Token privado del Worker" autocomplete="off" aria-label="Token privado"><button id="connect">Conectar</button><button id="disconnect">Desconectar</button><select id="filter" aria-label="Estrategia"><option value="ALL">Todas las estrategias</option><option value="SMC">SMC</option><option value="HARMONIC_CONCEPT">Armónicos</option><option value="VELAS">Estudio de velas</option><option value="WYCKOFF">Wyckoff</option><option value="CONFLUENCIA">Confluencia de estrategias</option><option value="SMC_HARMONICOS">SMC + Armónicos</option></select><button id="notify">Activar avisos del navegador</button><button id="discoverForex">Buscar más pares forex</button><button id="diagnose">Ver diagnóstico</button></div>
+<div id="status" role="status">Introduce el token para consultar señales y operar.</div>
+<div id="visualNotice" class="visual-notice" role="alert" hidden><strong>Nueva confirmación</strong><p id="visualNoticeText"></p><a href="#opportunitiesPanel">Ver entradas detectadas</a></div>
+<section id="opportunitiesPanel" class="panel" aria-labelledby="opportunitiesTitle"><h2 id="opportunitiesTitle">Entradas para revisar</h2><div class="controls" role="group" aria-label="Estado de las señales"><button id="viewAll" aria-pressed="true">Todas</button><button id="viewConfirmed" aria-pressed="false">Confirmadas</button><button id="viewWatch" aria-pressed="false">En observación</button></div><p class="muted notice">Mayor puntuación primero. La hora de confirmación corresponde a la primera detección del bot; revisa también la vigencia de los datos.</p><p id="opportunitiesSummary" role="status">Conecta para consultar las entradas detectadas.</p><div id="opportunities" class="grid"></div></section>
+<section id="notificationsPanel" class="panel" style="margin:16px 0"><h2>Notificaciones</h2><p class="muted notice">Los avisos se consultan cada 15 segundos mientras esta página está abierta. Los permisos del navegador controlan los avisos externos.</p><ul id="alerts"></ul></section>
+<details id="diagnosticDetails" class="panel"><summary>Último diagnóstico</summary><pre id="diagnosticReport" style="white-space:pre-wrap;overflow-wrap:anywhere">Pulsa Ver diagnóstico para consultar las fases del cron.</pre></details>
+<div class="layout"><main><div class="panel notice"><strong>Estrategias activas las 24 horas</strong><p>SMC, armónicos, estudio de velas y Wyckoff analizan por separado. Cualquiera puede confirmar desde 90/100. Confluencia reúne al menos dos estrategias operables en la misma dirección; no espera a que coincidan todas.</p><p class="muted">90/100 es una puntuación de reglas, no una probabilidad de ganar del 90%. Las confirmaciones usan velas cerradas y datos vigentes. Se mantienen los controles de calidad, exposición y órdenes; un mercado cerrado no admite entradas.</p></div><h2>Mercados · Compra / Venta</h2><div id="markets" class="grid"></div></main>
+<aside><section class="panel"><h2>Conexiones</h2><div id="account">Pendiente de consulta.</div><button id="checkDemo">Comprobar DEMO</button><button id="checkReal" class="real">Comprobar cuenta REAL</button><p class="muted notice">Real: máximo 2% por entrada, pérdida diaria 2% y riesgo agregado 2%. Envíos bloqueados hasta verificar los tres controles monetarios. Los botones demo envían órdenes después de tu confirmación. El ticket real prepara un plan para ejecutarlo manualmente en Capital.com; este Worker no envía órdenes reales.</p></section></aside></div>
+<dialog id="review"><h2 id="reviewTitle">Confirmar entrada</h2><pre id="reviewPlan"></pre><div id="checklist"></div><div class="controls"><button id="confirmOrder">Confirmar</button><button id="cancelOrder">Cancelar</button></div><p class="notice muted" id="reviewNote"></p></dialog>
+<script>
+'use strict';
+const el=id=>document.getElementById(id);let auth='',timer=null,cursor=0,baseline=true,busy=false,pending=null,requestEpoch=0,loaded=null,visualEventId=null,opportunityView='ALL',serverOffset=0,clockTimer=null,liveCards=[],lastAlertEvents=[],lastAlertValidity='',visualEvent=null;const seen=new Set();
+const status=(message,error=false)=>{el('status').textContent=message;el('status').className=error?'error':'';};
+async function api(path,body){if(!auth)throw Error('Conecta primero con tu token.');const r=await fetch(path,{method:body?'POST':'GET',headers:{Authorization:'Bearer '+auth,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,cache:'no-store'});const data=await r.json();if(!r.ok || data.status==='error')throw Error(data.detail || data.error || 'Error '+r.status);return data;}
+function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
+function fmt(v){return v===null || v===undefined?'N/D':String(v);}
+function localStamp(v){const d=new Date(v);return v && Number.isFinite(d.getTime())?d.toLocaleString('es-CR',{timeZone:'America/Guatemala',hour12:false})+' (UTC−6)':'N/D';}
+function serverNow(){return Date.now()+serverOffset;}
+function duration(seconds){const total=Math.max(0,Math.floor(seconds));return total>=60?Math.floor(total/60)+' min '+(total%60)+' s':total+' s';}
+function signalDeadline(p,data){
+  if(p.data_valid_until===null)return NaN;
+  if(p.data_valid_until!==undefined)return Date.parse(p.data_valid_until);
+  return Date.parse(p.updated_at)+(Number(data.signal_max_age_seconds)||600)*1000;
+}
+function signalView(p,data){
+  const age=(serverNow()-Date.parse(p.updated_at))/1000,deadline=signalDeadline(p,data);
+  const maxAge=Number(data.signal_max_age_seconds)||600;
+  const fresh=Number.isFinite(age) && age>=-60 && age<=maxAge && Number.isFinite(deadline) && serverNow()<deadline && !String(p.manual_block_reason||'').startsWith('Señal caducada');
+  const confirmed=Boolean(p.confirmed),blocked=confirmed && Boolean(p.manual_block_reason || p.blocked);
+  return {fresh,confirmed,blocked,rank:confirmed?(blocked?1:0):2,
+    label:!fresh?'Datos caducados o sin vigencia':blocked?'Bloqueada · revisar motivo':confirmed?'Confirmada · revisar entrada':'En observación · aún sin confirmar'};
+}
+function timingText(p,data){
+  const confirmed=Date.parse(p.confirmed_at),deadline=signalDeadline(p,data),now=serverNow();
+  const age=p.confirmed && Number.isFinite(confirmed)?'Antigüedad de confirmación: '+(confirmed>now+60000?'reloj sin verificar':duration((now-confirmed)/1000))+'. ':'';
+  if(!Number.isFinite(deadline))return age+'Vigencia de datos no verificable.';
+  return age+'Límite temporal de datos: '+localStamp(new Date(deadline).toISOString())+'. '+(now>=deadline?'Datos caducados; espera un análisis nuevo.':'Tiempo restante: '+duration((deadline-now)/1000)+'.')+' La entrada se revalida al confirmar.';
+}
+function tickValidity(){
+  let expired=false;
+  for(const entry of liveCards){
+    const view=signalView(entry.p,entry.data);
+    entry.timing.textContent=timingText(entry.p,entry.data);
+    if(!view.fresh){
+      entry.tag.textContent=view.label+' · '+entry.p.score+'/100';
+      entry.buttons.querySelectorAll('button').forEach(b=>{b.disabled=true;});
+      if(entry.highlight)entry.card.className='card signal-blocked';
+      if(entry.wasFresh)expired=true;
+    }
+    entry.wasFresh=view.fresh;
+  }
+  if(expired && loaded)showOpportunities(loaded);
+  if(visualEvent && !eventVisible(visualEvent)){el('visualNotice').hidden=true;visualEvent=null;visualEventId=null;}
+  const validity=alertValidity(lastAlertEvents);if(validity!==lastAlertValidity)showAlerts(lastAlertEvents);
+}
+
+function signalCard(p,data,highlight=false){
+  const view=signalView(p,data),card=node('article',undefined,'card'+(highlight?' signal-'+(!view.fresh||view.blocked?'blocked':view.confirmed?'confirmed':'watch'):''));
+  const tag=node('span',(highlight||!view.fresh?view.label:p.state)+' · '+p.score+'/100','tag');
+  card.append(node('h3',p.market+' · '+p.analysis_mode),tag);
+  card.append(node('p',p.direction+' · '+(p.entry_schedule?.label||'Análisis 24/7'),'notice'));
+  card.append(node('small','Mínimo '+fmt(p.min_confirmation_score || 90)+'/100 · puntuación de reglas'));
+  if(p.confluence_members?.length)card.append(node('p','Coinciden: '+p.confluence_members.map(m=>m.strategy+' '+m.score+'/100').join(' + '),'notice'));
+  card.append(node('div','Entrada '+fmt(p.entry)+' · SL '+fmt(p.stop_loss)+' · TP '+fmt(p.tp2),'prices'));
+  if(p.confirmed){const stamp=node('p',p.confirmed_at?'Confirmada por el bot: '+localStamp(p.confirmed_at):'Hora de confirmación no registrada. Actualiza el Worker para obtenerla.','notice');stamp.title=p.confirmed_at||'';card.append(stamp);}
+  card.append(node('small','Última lectura: '+localStamp(p.updated_at)));
+  const timing=node('small',timingText(p,data),'muted timing');card.append(timing);
+  const buttons=node('div',undefined,'controls');
+  const valid=view.fresh && view.confirmed && !view.blocked;
+  for(const action of ['COMPRA','VENTA']){
+    const b=node('button',action==='COMPRA'?'Compra demo':'Venta demo',action==='COMPRA'?'buy':'sell');
+    b.disabled=!(valid && p.actions?.[action]?.demo_enabled);b.onclick=()=>begin(p,action,false);buttons.append(b);
+  }
+  const real=node('button','Preparar ticket real','real');real.disabled=!(valid && p.actions?.[p.direction]?.real_ticket_enabled);real.onclick=()=>begin(p,p.direction,true,2);buttons.append(real);card.append(buttons);
+  if(!view.fresh)card.append(node('p','Datos caducados o sin vigencia verificable. Espera un análisis nuevo.','warn notice'));
+  else if(p.manual_block_reason)card.append(node('p',p.manual_block_reason,'warn notice'));
+  if(!view.confirmed && (p.preconfirmed||Number(p.score)>=65))card.append(node('p','Posible entrada en observación. Espera la confirmación de la estrategia.','warn notice'));
+  liveCards.push({p,data,card,tag,timing,buttons,highlight,wasFresh:view.fresh});
+  return card;
+}
+function showOpportunities(data){
+  liveCards=liveCards.filter(c=>!c.highlight);
+  const selected=el('filter').value,active=new Set(data.catalog.filter(m=>m.analysis_active!==false).map(m=>m.market));
+  const detected=data.items.filter(p=>active.has(p.market) && p.analysis_mode!=='AUTOMATICO' && (selected==='ALL'||p.analysis_mode===selected) && (p.confirmed||p.preconfirmed||p.operable));
+  const fresh=detected.filter(p=>signalView(p,data).fresh),confirmed=detected.filter(p=>p.confirmed),watch=fresh.filter(p=>!p.confirmed),expired=detected.length-fresh.length;
+  const current=(opportunityView==='CONFIRMED'?confirmed:opportunityView==='WATCH'?watch:fresh).slice().sort((a,b)=>Number(b.score)-Number(a.score) || (Date.parse(b.confirmed_at)||0)-(Date.parse(a.confirmed_at)||0) || String(a.market).localeCompare(String(b.market)));
+  el('viewConfirmed').textContent='Confirmadas · '+confirmed.length;el('viewWatch').textContent='En observación · '+watch.length;
+  for(const [id,value] of [['viewAll','ALL'],['viewConfirmed','CONFIRMED'],['viewWatch','WATCH']])el(id).setAttribute('aria-pressed',String(opportunityView===value));
+  el('opportunities').replaceChildren(...current.map(p=>signalCard(p,data,true)));
+  const heading=opportunityView==='CONFIRMED'?confirmed.length+' confirmadas de la última lectura por mercado y estrategia.':current.length?fresh.filter(p=>p.confirmed).length+' confirmadas para revisar · '+watch.length+' en observación.':'Sin entradas detectadas con datos vigentes en este filtro.';
+  el('opportunitiesSummary').textContent=heading+(expired?' '+expired+' lecturas caducadas o sin vigencia; esperando análisis nuevo.':'')+' Actualización '+localStamp(data.server_time)+'.';
+}
+function selectOpportunityView(view){opportunityView=view;if(loaded)showOpportunities(loaded);}
+
+function showMarkets(data){
+  liveCards=liveCards.filter(c=>c.highlight);
+  el('markets').replaceChildren();const selected=el('filter').value;
+  for(const market of data.catalog){
+    const signals=data.items.filter(p=>p.market===market.market && (selected==='ALL' || p.analysis_mode===selected));
+    if(!signals.length){const card=node('article',undefined,'card');card.append(node('h3',market.market),node('p',market.analysis_active===false?'Disponible en catálogo. No está seleccionado para el escaneo.':'Sin análisis disponible. Esperando datos del escaneo.','muted'));el('markets').append(card);continue;}
+    for(const p of signals)el('markets').append(signalCard(p,data));
+  }
+}
+function eventSignal(event){return loaded?.items.find(p=>p.market===event.market && (p.strategy_origin||p.analysis_mode)===event.strategy_origin && p.direction===event.direction);}
+function eventVisible(event){
+  const p=eventSignal(event);
+  return Boolean(loaded && p && event.current && Number.isFinite(Date.parse(event.expires_at)) && Date.parse(event.expires_at)>serverNow() && signalView(p,loaded).fresh);
+}
+function eventExecutable(event){const p=eventSignal(event);return eventVisible(event) && event.execution_allowed && (!p || Boolean(p.actions?.[event.direction]?.demo_enabled));}
+function alertValidity(events){return events.map(e=>e.id+':'+eventVisible(e)+':'+eventExecutable(e)).join('|');}
+
+function showVisualNotice(event){
+  if(!eventVisible(event))return;
+  visualEventId=event.id;visualEvent=event;const text=event.market+' · '+event.strategy_origin+' · '+event.direction+' · '+fmt(event.confirmation_score)+'/100 · Entrada '+fmt(event.entry)+' · SL '+fmt(event.stop_loss)+' · TP '+fmt(event.tp2)+(eventExecutable(event)?' · Revisa la señal antes de entrar.':' · Entrada bloqueada; revisa el motivo.');
+  if(el('visualNoticeText').textContent!==text)el('visualNoticeText').textContent=text;
+  el('visualNotice').hidden=false;
+}
+
+function showAccount(data){const d=data.broker_demo,r=data.broker_real;el('account').replaceChildren(node('p','Demo: órdenes '+(d.orders_enabled?'activas':'desactivadas')+' · automático '+(d.automatic_enabled?'activo':'desactivado')),node('p','Real: '+(r.connection_verified?'cuenta verificada '+r.account_id_masked+' · '+r.currency:'conexión pendiente')),node('p','Tickets reales: '+(r.manual_ticket_ready?'disponibles para ejecución externa':'bloqueados · '+r.block_reasons.join(' · ')),'warn'));}
+function showAlerts(events) {
+  lastAlertEvents=events;lastAlertValidity=alertValidity(events);
+  el('alerts').replaceChildren();
+  if(visualEventId!==null){const current=events.find(e=>e.id===visualEventId);if(current && eventVisible(current))showVisualNotice(current);else{el('visualNotice').hidden=true;visualEventId=null;}}
+  for(const event of [...events].reverse()) {
+    const expired=!eventVisible(event);
+    const state=!event.current?'reemplazada · no ejecutar':expired?'caducada · no ejecutar':eventExecutable(event)?'operable DEMO · requiere confirmación':'permiso bloqueado · no ejecutar';
+    const li=node('li',event.market+' · '+event.strategy_origin+' · '+event.direction+' · '+state);
+    li.append(node('div','Puntuación '+fmt(event.confirmation_score)+'/100 · Entrada '+fmt(event.entry)+' · SL '+fmt(event.stop_loss)+' · TP '+fmt(event.tp2),'prices'));
+    if(event.confluence_members?.length)li.append(node('small','Coinciden: '+event.confluence_members.map(m=>m.strategy+' '+m.score+'/100').join(' + ')));
+    li.append(node('small','Confirmada '+localStamp(event.created_at)+' · Vence '+localStamp(event.expires_at)));
+    el('alerts').append(li);
+  }
+}
+async function refresh() {
+  if(busy || !auth)return;
+  busy=true;const epoch=requestEpoch;let signalsUpdated=false;
+  try {
+    const data=await api('/api/v1/manual-entry-options');if(epoch!==requestEpoch)return;
+    const serverTime=Date.parse(data.server_time);if(Number.isFinite(serverTime))serverOffset=serverTime-Date.now();
+    loaded=data;showOpportunities(data);showMarkets(data);showAccount(data);signalsUpdated=true;
+    if(!baseline) {
+      let hasMore=true;
+      while(hasMore) {
+        const feed=await api('/api/v1/notifications?after_id='+cursor+'&limit=100');if(epoch!==requestEpoch)return;
+        for(const event of feed.items) {
+          if(seen.has(event.id))continue;seen.add(event.id);
+          showVisualNotice(event);
+          if(event.current && Date.parse(event.expires_at)>serverNow() && 'Notification' in window && Notification.permission==='granted') {
+            try {new Notification('Lion Trader · Entrada confirmada',{body:event.market+' · '+event.strategy_origin+' · '+event.direction+' · '+fmt(event.confirmation_score)+'/100 · Entrada '+fmt(event.entry)+' · SL '+fmt(event.stop_loss)+' · TP '+fmt(event.tp2),tag:'lion-'+event.id});}
+            catch { /* Some mobile browsers require service-worker notifications; the panel remains active. */ }
+          }
+        }
+        cursor=feed.cursor;hasMore=feed.has_more;
+      }
+    }
+    const recent=await api('/api/v1/notifications?recent=true&limit=30');if(epoch!==requestEpoch)return;
+    showAlerts(recent.items);if(baseline)cursor=recent.cursor;baseline=false;
+    status('Actualizado '+data.server_time+' · Avisos activos mientras la página permanezca abierta.');
+  } catch(e) {if(epoch===requestEpoch){if(!signalsUpdated){loaded=null;liveCards=[];lastAlertEvents=[];lastAlertValidity='';el('alerts').replaceChildren(node('li','No se pudieron actualizar los avisos. Espera una consulta nueva.'));el('markets').replaceChildren(node('p','No se pudieron actualizar los mercados. Espera una consulta nueva.','warn notice'));el('opportunities').replaceChildren();el('opportunitiesSummary').textContent='No se pudieron actualizar las entradas. Comprueba la conexión y el token.';}el('visualNotice').hidden=true;visualEventId=null;visualEvent=null;status(e.message,true);}}
+  finally {busy=false;}
+}
+
+async function begin(p,action,real,riskPct){if(pending)return;const epoch=requestEpoch;pending={loading:true};try{const path='/api/v1/signals/'+encodeURIComponent(p.id)+(real?'/real-ticket':'/approval');const data=await api(path,{stage:'CHECKLIST',action,risk_pct:riskPct});if(epoch!==requestEpoch)return;pending={path,action,real,riskPct:data.plan.risk_pct,token:data.approval_token,expires:data.expires_at};el('reviewTitle').textContent=real?'Preparar ticket REAL manual':'Confirmar orden DEMO';const plan=data.plan;el('reviewPlan').textContent=p.market+' · '+action+' · '+p.analysis_mode+'\nEntrada: '+fmt(plan.entry)+'\nStop Loss: '+fmt(plan.stop_loss)+'\nTP: '+fmt(plan.tp2)+'\n'+(real?'Cuenta: '+fmt(plan.account_id_masked)+' · '+fmt(plan.currency)+'\nPatrimonio: USD '+fmt(plan.equity)+'\nRiesgo máximo elegido: '+fmt(plan.risk_pct)+'% · USD '+fmt(plan.risk_budget_usd)+'\nLímites: pérdida diaria '+fmt(plan.limits.max_daily_loss_pct)+'% / exposición '+fmt(plan.limits.max_exposure_pct)+'%\nTamaño y riesgo efectivo: calcular en Capital.com':'Tamaño solicitado: '+fmt(plan.suggested_lot)+' (puede ajustarse a reglas del mercado)\nRiesgo monetario: no calculado por este tamaño fijo')+'\nConfirmación válida hasta '+data.expires_at;el('checklist').replaceChildren();for(const line of data.checklist){const label=node('label',undefined,'check');const check=node('input');check.type='checkbox';label.append(check,node('span',line));el('checklist').append(label);}el('reviewNote').textContent=real?'Este ticket no envía una orden real. La ejecución se hace manualmente en Capital.com.':'Confirmar enviará una orden demo con fondos virtuales. El servidor revalidará puntuación, datos, límites y cotización.';el('review').showModal();}catch(e){pending=null;status(e.message,true);}}
+el('confirmOrder').onclick=async()=>{if(!pending)return;if([...el('checklist').querySelectorAll('input')].some(c=>!c.checked)){status('Marca los puntos del checklist antes de confirmar.',true);return;}const current=pending;pending=null;el('confirmOrder').disabled=true;try{const data=await api(current.path,{stage:'CONFIRM',action:current.action,risk_pct:current.riskPct,approval_token:current.token,acknowledge_analysis_only:!current.real,acknowledge_manual_external:current.real});el('review').close();status(data.detail);if(current.real){el('reviewPlan').textContent=data.detail+'\n'+JSON.stringify(data.plan,null,2);el('reviewTitle').textContent='Ticket real preparado · ninguna orden enviada';el('checklist').replaceChildren();const link=node('a','Abrir Capital.com para ejecutar manualmente ↗');link.href=data.manual_link;link.target='_self';link.rel='noopener noreferrer';el('checklist').append(link);el('review').showModal();}}catch(e){status(e.message,true);el('review').close();}finally{el('confirmOrder').disabled=false;}};
+el('cancelOrder').onclick=()=>{pending=null;el('review').close();};el('review').addEventListener('cancel',()=>{pending=null;});
+el('connect').onclick=()=>{const token=el('token').value.trim();if(token.length<24){status('Introduce el token privado completo.',true);return;}auth=token;el('token').value='';requestEpoch++;cursor=0;baseline=true;seen.clear();el('alerts').replaceChildren();el('visualNotice').hidden=true;visualEventId=null;clearInterval(timer);clearInterval(clockTimer);refresh();timer=setInterval(refresh,15000);clockTimer=setInterval(tickValidity,1000);};
+el('disconnect').onclick=()=>{auth='';requestEpoch++;clearInterval(timer);clearInterval(clockTimer);pending=null;loaded=null;liveCards=[];serverOffset=0;lastAlertEvents=[];visualEvent=null;el('opportunities').replaceChildren();el('opportunitiesSummary').textContent='Conecta para consultar las entradas detectadas.';el('visualNotice').hidden=true;visualEventId=null;el('review').close();el('markets').replaceChildren();el('alerts').replaceChildren();el('account').textContent='Desconectado.';status('Desconectado. Token eliminado de la memoria de esta página.');};
+el('viewAll').onclick=()=>selectOpportunityView('ALL');el('viewConfirmed').onclick=()=>selectOpportunityView('CONFIRMED');el('viewWatch').onclick=()=>selectOpportunityView('WATCH');
+el('filter').onchange=()=>{if(loaded){showOpportunities(loaded);showMarkets(loaded);}};
+el('notify').onclick=async()=>{if(!('Notification' in window)){status('Este navegador no admite avisos externos. Los avisos de la página siguen disponibles.',true);return;}const permission=await Notification.requestPermission();status(permission==='granted'?'Avisos del navegador habilitados.':'Avisos externos no habilitados; consulta el panel de notificaciones.');};
+el('checkDemo').onclick=async()=>{try{status('Comprobando sesión DEMO, sin órdenes…');const data=await api('/api/v1/preflight?refresh=true');await refresh();status(data.authenticated?'Sesión DEMO vigente. Revisa la cobertura en Diagnóstico.':'La conexión DEMO sigue pendiente: '+JSON.stringify(data.errors || data.last_broker_error || 'consulta Diagnóstico'));}catch(e){status(e.message,true);}};
+el('checkReal').onclick=async()=>{try{status('Comprobando sesión y cuenta real, sin órdenes…');const data=await api('/api/v1/connections/real/check',{});status(data.broker_real.connection_verified?'Conexión real verificada.':'Real: '+data.broker_real.reason);await refresh();}catch(e){status(e.message,true);}};
+el('discoverForex').onclick=async()=>{el('discoverForex').disabled=true;try{const data=await api('/api/v1/forex/discover',{});await refresh();status('Búsqueda '+data.search_currency+': '+data.observed_pairs+' pares observados. Próxima moneda: '+data.next_currency+'. Los nuevos pares quedan en catálogo; selecciona hasta 28 en LION_ACTIVE_MARKETS para analizarlos.');}catch(e){status(e.message,true);}finally{el('discoverForex').disabled=false;}};
+el('diagnose').onclick=async()=>{try{const data=await api('/api/v1/diagnostics');const report=['Diagnóstico: '+(data.blockers.join(' · ') || 'sin bloqueos generales'),'Cron: '+(data.cron.progress?.phase || 'sin registro')+' · Fase registrada: '+localStamp(data.cron.progress?.at),'Último inicio: '+localStamp(data.cron.started?.started_at),'Último final: '+localStamp(data.cron.completed?.completed_at),'Bloqueo cron: '+fmt(data.health?.cron_status?.lock_held)+' · Último solape: '+localStamp(data.health?.cron_status?.last_overlap_at),'Ciclo nominal: '+fmt(data.scan?.nominal_turn_seconds)+' segundos · Vigencia máxima: '+fmt(data.scan?.max_signal_age_seconds)+' segundos','Errores del último ciclo: '+JSON.stringify(data.cron.completed?.errors || []),'Señales: '+JSON.stringify(data.by_strategy),'Bloqueos de señales: '+JSON.stringify(data.block_reasons)].join('\n');el('diagnosticReport').textContent=report;el('diagnosticDetails').open=true;status('Diagnóstico actualizado. El informe permanece debajo de este mensaje.');}catch(e){status(e.message,true);}};
+</script></body></html>
