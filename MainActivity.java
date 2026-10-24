@@ -17,8 +17,6 @@ import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 
 public final class MainActivity extends Activity {
     private WebView web;
@@ -64,7 +62,13 @@ public final class MainActivity extends Activity {
             }
             @Override public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
                 String value = request.getUrl().toString();
-                if (NavigationPolicy.isApi(value) || (request.isForMainFrame() && NavigationPolicy.isDocument(value))) return null;
+                if (request.isForMainFrame() && "GET".equals(request.getMethod()) && NavigationPolicy.isDocument(value)) {
+                    try { return new WebResourceResponse("text/html", "UTF-8", getAssets().open("operations.html")); }
+                    catch (java.io.IOException e) {
+                        return new WebResourceResponse("text/plain", "UTF-8", new ByteArrayInputStream("Error al abrir el panel local.".getBytes()));
+                    }
+                }
+                if (NavigationPolicy.isApi(value)) return null;
                 return new WebResourceResponse("text/plain","UTF-8",403,"Blocked",java.util.Collections.emptyMap(),new ByteArrayInputStream(new byte[0]));
             }
             @Override public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
@@ -77,13 +81,7 @@ public final class MainActivity extends Activity {
             }
         });
         container.addView(web,new LinearLayout.LayoutParams(-1,-1));
-        try (InputStream input=getAssets().open("operations.html"); ByteArrayOutputStream output=new ByteArrayOutputStream()) {
-            byte[] buffer=new byte[8192];int count;
-            while ((count=input.read(buffer))!=-1) output.write(buffer,0,count);
-            web.loadDataWithBaseURL(NavigationPolicy.APP_URL,output.toString("UTF-8"),"text/html","UTF-8",null);
-        } catch (Exception e) {
-            web.loadDataWithBaseURL(NavigationPolicy.APP_URL,"<p>No se pudo abrir Lion Trader. Cierra y vuelve a abrir la aplicación.</p>","text/html","UTF-8",null);
-        }
+        web.loadUrl(NavigationPolicy.APP_URL);
     }
 
     @Override public void onResume() {
