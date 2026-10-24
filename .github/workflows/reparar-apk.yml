@@ -1,0 +1,136 @@
+name: Reparar APK29.8.1
+'on':
+  workflow_dispatch: null
+  push:
+    paths:
+    - .github/workflows/reparar-apk.yml
+permissions:
+  contents: write
+concurrency:
+  group: lion-fix-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  apk:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+    - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+      with:
+        distribution: temurin
+        java-version: '21'
+    - name: Corregir
+      run: |
+        python3 - <<'PY'
+        from pathlib import Path
+
+        p = Path('MainActivity.java')
+        s = p.read_text()
+        if 'loadDataWithBaseURL' in s:
+            old = '                if (NavigationPolicy.isApi(value) || (request.isForMainFrame() && NavigationPolicy.isDocument(value))) return null;'
+            new = '                if (request.isForMainFrame() && "GET".equals(request.getMethod()) && NavigationPolicy.isDocument(value)) {\n                    try { return new WebResourceResponse("text/html", "UTF-8", getAssets().open("operations.html")); }\n                    catch (java.io.IOException e) {\n                        return new WebResourceResponse("text/plain", "UTF-8", new ByteArrayInputStream("Error al abrir el panel local.".getBytes()));\n                    }\n                }\n                if (NavigationPolicy.isApi(value)) return null;'
+            assert s.count(old) == 1, 'Fuente de MainActivity inesperada'
+            s = s.replace(old, new)
+            start = s.index('        try (InputStream input=getAssets().open(')
+            end = s.index('\n    }\n\n    @Override public void onResume', start)
+            s = s[:start] + '        web.loadUrl(NavigationPolicy.APP_URL);' + s[end:]
+            s = s.replace('import java.io.ByteArrayOutputStream;\n', '').replace('import java.io.InputStream;\n', '')
+        assert 'loadDataWithBaseURL' not in s and 'getAssets().open("operations.html")' in s
+        p.write_text(s)
+        for name in ('build.gradle', 'AndroidManifest.xml'):
+            q = Path(name)
+            q.write_text(q.read_text().replace('29.8.0', '29.8.1').replace('29800', '29801'))
+
+        PY
+        cat > smoke_launch.py <<'PY'
+        from pathlib import Path
+        import re, subprocess, sys, time, xml.etree.ElementTree as ET
+        out = Path('salida')
+        out.mkdir(exist_ok=True)
+        def adb(*args):
+            return subprocess.check_output(['adb', *args], timeout=40)
+        def page():
+            adb('shell', 'uiautomator', 'dump', '/sdcard/lion.xml')
+            value = adb('exec-out', 'cat', '/sdcard/lion.xml').decode()
+            (out/'arranque.xml').write_text(value)
+            return value
+        try:
+            adb('install', '-r', sys.argv[1])
+            for service in ('wifi', 'data'):
+                adb('shell', 'svc', service, 'disable')
+            adb('shell', 'am', 'start', '-W', '-n', 'com.liontrader.android/.MainActivity')
+            button = None
+            for _ in range(12):
+                try:
+                    button = next((n for n in ET.fromstring(page()).iter('node') if (n.get('text') or n.get('content-desc')) == 'Conectar'), None)
+                    if button is not None: break
+                except (subprocess.SubprocessError, ET.ParseError): pass
+                time.sleep(2)
+            assert button is not None, 'Android no mostro Conectar'
+            a,b,c,d = map(int,re.findall(r'\d+',button.get('bounds','')))
+            assert c>a and d>b
+            adb('shell','input','tap',str((a+c)//2),str((b+d)//2))
+            for _ in range(8):
+                if 'Introduce el token privado completo.' in page(): break
+                time.sleep(1)
+            else: raise AssertionError('Conectar no ejecuto JavaScript')
+            (out/'PRUEBA_ARRANQUE.txt').write_text('PASS: panel local sin red y JavaScript de Conectar.\n')
+        finally:
+            (out/'ARRANQUE_ANDROID.png').write_bytes(adb('exec-out','screencap','-p'))
+        PY
+    - name: Organizar
+      run: |
+        lion_project=proyecto
+        mkdir -p "$lion_project"/{gradle/wrapper,android/{src/com/liontrader/android,res/{drawable,values},assets}}
+        cp settings.gradle gradle.properties gradlew gradlew.bat "$lion_project/"
+        cp gradle-wrapper.jar gradle-wrapper.properties "$lion_project/gradle/wrapper/"
+        cp build.gradle AndroidManifest.xml "$lion_project/android/"
+        cp MainActivity.java NavigationPolicy.java "$lion_project/android/src/com/liontrader/android/"
+        cp styles.xml "$lion_project/android/res/values/"
+        cp ic_lion.xml "$lion_project/android/res/drawable/"
+        cp operations.html "$lion_project/android/assets/"
+        printf "plugins { id 'com.android.application' version '8.9.2' apply false }\n" > "$lion_project/build.gradle"
+    - name: Compilar
+      run: |
+        "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
+        cd proyecto
+        chmod +x gradlew
+        ./gradlew --no-daemon --console=plain :app:verificarApkDebug 2>&1 | tee compilacion.log
+    - name: KVM
+      run: sudo chmod 666 /dev/kvm
+    - name: Probar Android
+      uses: ReactiveCircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+      with:
+        api-level: 35
+        target: google_apis
+        arch: x86_64
+        disable-animations: true
+        script: python3 smoke_launch.py proyecto/android/build/outputs/apk/debug/app-debug.apk
+    - name: Guardar fuente
+      run: |
+        git add MainActivity.java build.gradle AndroidManifest.xml
+        if ! git diff --cached --quiet; then
+          git -c user.name=github-actions -c user.email=actions@users.noreply.github.com commit -m "Fix local WebView loading and bump Android to 29.8.1"
+          git push origin HEAD:main
+        fi
+    - name: Verificar APK
+      run: |
+        cp proyecto/android/build/outputs/apk/debug/app-debug.apk salida/LION_TRADER_29_8_1_PRUEBA.apk
+        "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs salida/LION_TRADER_29_8_1_PRUEBA.apk > salida/FIRMA.txt
+        cd salida
+        sha256sum LION_TRADER_29_8_1_PRUEBA.apk > SHA256.txt
+    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: LION_TRADER_29_8_1_VALIDADO
+        path: salida/
+        if-no-files-found: error
+        retention-days: 14
+    - if: failure()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: ERROR_ARRANQUE_29_8_1
+        path: |-
+          salida/
+          proyecto/compilacion.log
+        if-no-files-found: ignore
+        retention-days: 7
