@@ -5,6 +5,9 @@ import java.net.URI;
 public final class NavigationPolicy {
     public static final String ORIGIN = "https://lion-trade-demo.arroyovargass.workers.dev";
     public static final String APP_URL = ORIGIN + "/operate/";
+    public static boolean isAccessDocument(String value) {
+        return APP_URL.equals(value);
+    }
     private static URI parse(String value) {
         try { return new URI(value); } catch (Exception e) { return null; }
     }

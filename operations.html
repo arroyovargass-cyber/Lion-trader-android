@@ -1,18 +1,20 @@
 <!doctype html>
-<html lang="es"><head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-ITz3bZbD4932xVUXywfGNkbN7z++YdgQ1EnGLrRfESM='; style-src 'sha256-akZHMaOG/yLGEttjZMh95JMcZ4wy6XBFPg5QR+CJJBY='; img-src 'self'; connect-src https://lion-trade-demo.arroyovargass.workers.dev; base-uri 'none'; form-action 'none'; object-src 'none'"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lion Trader · Android 29.9.1</title>
+<html lang="es"><head><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-8OALtXWG7zuor9/lt1qnfzHovBFnS8UuFvWIeWJgswU='; style-src 'sha256-39z6Gli7ki5meErUrJ7u8Cs9uPPgrw1eV5x+Ouk85Es='; img-src 'self'; connect-src https://lion-trade-demo.arroyovargass.workers.dev; base-uri 'none'; form-action 'none'; object-src 'none'"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lion Trader · Android 29.10.0</title>
 <style>
-:root{color-scheme:dark;font-family:system-ui,-apple-system,sans-serif;background:#08090d;color:#f0f0f3;--gold:#e9c65a;--panel:#11131a;--line:#65572e;--muted:#b0b2bd}*{box-sizing:border-box}[hidden]{display:none!important}body{max-width:940px;margin:auto;padding:14px 14px 106px}header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid var(--line);border-radius:0 0 24px 24px;background:linear-gradient(110deg,#1d1a10,#0b0c11 75%)}.brand{display:flex;align-items:center;gap:10px;min-width:0}.brand img{width:56px;height:64px;object-fit:contain;flex-shrink:0}.brand h1{font-size:clamp(18px,5vw,27px);color:var(--gold);margin:0;letter-spacing:-.7px;white-space:nowrap}.brand small{display:block;font-size:clamp(7px,2vw,10px);letter-spacing:.65px;color:#b9b7ac;margin-top:4px;white-space:nowrap}.link-button{border-color:var(--line);color:var(--gold);background:#0b0c11;padding:11px 12px;flex-shrink:0;font-size:13px}h2{font-size:18px;line-height:1.3;color:var(--gold);margin:0 0 16px}h3{font-size:17px}small,.muted{color:var(--muted)}a{color:var(--gold);text-underline-offset:3px}button,input,select{font:inherit;border-radius:14px;border:1px solid #373946;padding:12px;background:#191c25;color:inherit;min-width:0;max-width:100%}button{cursor:pointer;min-height:46px;font-weight:650}button:disabled{opacity:.48;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}input{width:auto}.controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:16px 0}.controls input{flex:1;min-width:130px}.controls select{width:100%}.panel,.card{background:var(--panel);border:1px solid #373946;border-radius:22px;padding:18px;overflow-wrap:anywhere}.gold-panel{border-color:var(--line);background:linear-gradient(110deg,#211d10,var(--panel) 75%)}section{margin:20px 0}.mode-strip{border:1px solid var(--line);border-radius:14px;color:var(--gold);background:#221e10;padding:12px;text-align:center;font-size:12px;font-weight:750;letter-spacing:.3px;margin:16px 0}.section-eyebrow{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);margin:0 0 8px}.status-line{font-size:16px;font-weight:650;line-height:1.6;margin:8px 0}.analysis-date{font-size:13px;line-height:1.65;color:var(--muted)}#homeDataState{font-size:13px;line-height:1.6;color:var(--gold)}#homeDemo,#homeSummary{font-size:13px;line-height:1.7}#homeSummary{color:var(--muted)}.counters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:16px 0 22px}.counter{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:94px;padding:12px 3px;background:var(--panel);border-color:#373946;border-radius:20px;font-size:clamp(11px,3vw,14px);text-transform:uppercase}.counter strong{font-size:25px;line-height:1.2;font-variant-numeric:tabular-nums}.counter small{font-size:9px;text-transform:none;font-weight:450}.counter.confirmed{color:#5cdbb0}.counter.watch{color:var(--gold)}.section-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:22px 0 14px}.section-heading h2{margin:0;font-size:16px;text-transform:uppercase;letter-spacing:.3px}.section-heading small{font-size:11px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}.card{border-color:var(--line);background:linear-gradient(120deg,#1b1910,var(--panel) 62%);min-width:0}.card h3{margin:0 0 10px;color:var(--gold)}.signal-confirmed{border-color:#756332}.signal-watch{border-color:#65572e}.signal-blocked{border-color:#6e5242}.tag{font-size:11px;line-height:1.6;padding:5px 9px;background:#242114;border:1px solid #54492c;color:#f2d985;border-radius:9px;display:inline-block}.timing{display:block;line-height:1.7;font-size:12px;font-variant-numeric:tabular-nums;margin-top:6px}.prices{font-variant-numeric:tabular-nums;font-size:14px;line-height:1.9;background:#0e1017;border:1px solid #30323e;border-radius:16px;padding:12px;margin:14px 0}.prices strong{display:block;color:var(--gold);font-size:11px;letter-spacing:1px;margin-bottom:6px}.prices p{margin:2px 0}.buy{border-color:#3e8c70;color:#6fe0b4}.sell{border-color:#a45862;color:#ffadb6}.real{border-color:var(--line);color:var(--gold)}.card .controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}.card .controls .real{grid-column:1/-1}.card button{font-size:13px}.card .controls button{text-transform:uppercase}.card>button{width:100%;background:#292416;border-color:var(--line);color:var(--gold);margin-top:10px}.card>a{font-size:13px;line-height:1.6}.notice{font-size:13px;line-height:1.7}.warn{color:#f1ce7f}.error{color:#ffaaa8}#status{font-size:12px;line-height:1.6;white-space:pre-wrap;margin:12px 2px;color:var(--muted)}#status.error{color:#ffaaa8}.visual-notice{border:1px solid var(--line);background:#262112;border-radius:18px;padding:16px;margin:14px 0}.visual-notice strong{color:var(--gold)}.visual-notice p{font-size:13px;line-height:1.6}.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:10;display:flex;gap:5px;padding:10px 8px calc(10px + env(safe-area-inset-bottom));background:#0c0d12;border-top:1px solid var(--line)}.bottom-nav button{flex:1;min-width:0;border:1px solid transparent;background:transparent;color:#b7b8c0;border-radius:12px;padding:12px 3px;font-size:13px}.bottom-nav button[aria-selected="true"]{background:#262112;border-color:var(--line);color:var(--gold)}button[aria-pressed="true"]{background:#2d2614;border-color:var(--gold);color:var(--gold)}#opportunitiesSummary{line-height:1.7;font-size:13px;color:var(--muted)}#alerts{padding-left:20px}#alerts li{line-height:1.6;margin:18px 0}#alerts button{display:block;margin-top:10px}#account{font-size:13px;line-height:1.7}#diagnosticDetails{margin-top:18px}#diagnosticDetails summary{color:var(--gold)}#diagnosticReport{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.7}#detailContent{margin-top:14px}dialog{max-width:560px;width:94%;max-height:85vh;overflow:auto;border:1px solid var(--line);background:var(--panel);color:inherit;border-radius:22px;padding:22px}dialog::backdrop{background:#000c}dialog pre{white-space:pre-wrap;font:inherit;font-size:14px;line-height:1.8}.check{display:flex;align-items:flex-start;gap:10px;margin:12px 0;font-size:14px;line-height:1.6}.check input{min-width:20px;width:20px;height:20px;accent-color:var(--gold)}.empty-state{border:1px dashed var(--line);padding:20px;border-radius:18px;color:var(--muted);font-size:14px;line-height:1.7}.app-version{margin-top:16px;font-size:11px;text-align:center;color:var(--muted)}@media(min-width:650px){body{padding:18px 24px 110px}header{padding:16px 20px}.brand img{width:68px;height:74px}.brand h1{font-size:29px}.brand small{font-size:10px}.counter{font-size:15px;min-height:100px}.controls select{width:auto;flex:1}}
+:root{color-scheme:dark;font-family:system-ui,-apple-system,sans-serif;background:#08090d;color:#f0f0f3;--gold:#e9c65a;--panel:#11131a;--line:#65572e;--muted:#b0b2bd}*{box-sizing:border-box}[hidden]{display:none!important}body{max-width:940px;margin:auto;padding:14px 14px 106px}header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid var(--line);border-radius:0 0 24px 24px;background:linear-gradient(110deg,#1d1a10,#0b0c11 75%)}.brand{display:flex;align-items:center;gap:10px;min-width:0}.brand img{width:56px;height:64px;object-fit:contain;flex-shrink:0}.brand h1{font-size:clamp(18px,5vw,27px);color:var(--gold);margin:0;letter-spacing:-.7px;white-space:nowrap}.brand small{display:block;font-size:clamp(7px,2vw,10px);letter-spacing:.65px;color:#b9b7ac;margin-top:4px;white-space:nowrap}.link-button{border-color:var(--line);color:var(--gold);background:#0b0c11;padding:11px 12px;flex-shrink:0;font-size:13px}h2{font-size:18px;line-height:1.3;color:var(--gold);margin:0 0 16px}h3{font-size:17px}small,.muted{color:var(--muted)}a{color:var(--gold);text-underline-offset:3px}button,input,select{font:inherit;border-radius:14px;border:1px solid #373946;padding:12px;background:#191c25;color:inherit;min-width:0;max-width:100%}button{cursor:pointer;min-height:46px;font-weight:650}button:disabled{opacity:.48;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}input{width:auto}.controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:16px 0}.controls input{flex:1;min-width:130px}.controls select{width:100%}.panel,.card{background:var(--panel);border:1px solid #373946;border-radius:22px;padding:18px;overflow-wrap:anywhere}.gold-panel{border-color:var(--line);background:linear-gradient(110deg,#211d10,var(--panel) 75%)}section{margin:20px 0}.mode-strip{border:1px solid var(--line);border-radius:14px;color:var(--gold);background:#221e10;padding:12px;text-align:center;font-size:12px;font-weight:750;letter-spacing:.3px;margin:16px 0}.section-eyebrow{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);margin:0 0 8px}.status-line{font-size:16px;font-weight:650;line-height:1.6;margin:8px 0}.analysis-date{font-size:13px;line-height:1.65;color:var(--muted)}#homeDataState{font-size:13px;line-height:1.6;color:var(--gold)}#homeDemo,#homeSummary{font-size:13px;line-height:1.7}#homeSummary{color:var(--muted)}.counters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:16px 0 22px}.counter{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:94px;padding:12px 3px;background:var(--panel);border-color:#373946;border-radius:20px;font-size:clamp(11px,3vw,14px);text-transform:uppercase}.counter strong{font-size:25px;line-height:1.2;font-variant-numeric:tabular-nums}.counter small{font-size:9px;text-transform:none;font-weight:450}.counter.confirmed{color:#5cdbb0}.counter.watch{color:var(--gold)}.section-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:22px 0 14px}.section-heading h2{margin:0;font-size:16px;text-transform:uppercase;letter-spacing:.3px}.section-heading small{font-size:11px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}.card{border-color:var(--line);background:linear-gradient(120deg,#1b1910,var(--panel) 62%);min-width:0}.card h3{margin:0 0 10px;color:var(--gold)}.signal-confirmed{border-color:#756332}.signal-watch{border-color:#65572e}.signal-blocked{border-color:#6e5242}.tag{font-size:11px;line-height:1.6;padding:5px 9px;background:#242114;border:1px solid #54492c;color:#f2d985;border-radius:9px;display:inline-block}.timing{display:block;line-height:1.7;font-size:12px;font-variant-numeric:tabular-nums;margin-top:6px}.prices{font-variant-numeric:tabular-nums;font-size:14px;line-height:1.9;background:#0e1017;border:1px solid #30323e;border-radius:16px;padding:12px;margin:14px 0}.prices strong{display:block;color:var(--gold);font-size:11px;letter-spacing:1px;margin-bottom:6px}.prices p{margin:2px 0}.buy{border-color:#3e8c70;color:#6fe0b4}.sell{border-color:#a45862;color:#ffadb6}.real{border-color:var(--line);color:var(--gold)}.card .controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}.card .controls .real{grid-column:1/-1}.card button{font-size:13px}.card .controls button{text-transform:uppercase}.card>button{width:100%;background:#292416;border-color:var(--line);color:var(--gold);margin-top:10px}.card>a{font-size:13px;line-height:1.6}.notice{font-size:13px;line-height:1.7}.warn{color:#f1ce7f}.error{color:#ffaaa8}#status{font-size:12px;line-height:1.6;white-space:pre-wrap;margin:12px 2px;color:var(--muted)}#status.error{color:#ffaaa8}.visual-notice{position:fixed;bottom:82px;left:14px;right:14px;max-width:900px;max-height:38vh;overflow:auto;z-index:20;margin:auto;border:1px solid var(--line);background:#262112;border-radius:18px;padding:16px;margin:14px 0}.visual-notice strong{color:var(--gold)}.visual-notice p{font-size:13px;line-height:1.6}.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:10;display:flex;gap:5px;padding:10px 8px calc(10px + env(safe-area-inset-bottom));background:#0c0d12;border-top:1px solid var(--line)}.bottom-nav button{flex:1;min-width:0;border:1px solid transparent;background:transparent;color:#b7b8c0;border-radius:12px;padding:12px 3px;font-size:13px}.bottom-nav button[aria-selected="true"]{background:#262112;border-color:var(--line);color:var(--gold)}button[aria-pressed="true"]{background:#2d2614;border-color:var(--gold);color:var(--gold)}#opportunitiesSummary{line-height:1.7;font-size:13px;color:var(--muted)}#alerts{padding-left:20px}#alerts li{line-height:1.6;margin:18px 0}#alerts button{display:block;margin-top:10px}#account{font-size:13px;line-height:1.7}#diagnosticDetails{margin-top:18px}#diagnosticDetails summary{color:var(--gold)}#diagnosticReport{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.7}#detailContent{margin-top:14px}dialog{max-width:560px;width:94%;max-height:85vh;overflow:auto;border:1px solid var(--line);background:var(--panel);color:inherit;border-radius:22px;padding:22px}dialog::backdrop{background:#000c}dialog pre{white-space:pre-wrap;font:inherit;font-size:14px;line-height:1.8}.check{display:flex;align-items:flex-start;gap:10px;margin:12px 0;font-size:14px;line-height:1.6}.check input{min-width:20px;width:20px;height:20px;accent-color:var(--gold)}.empty-state{border:1px dashed var(--line);padding:20px;border-radius:18px;color:var(--muted);font-size:14px;line-height:1.7}.app-version{margin-top:16px;font-size:11px;text-align:center;color:var(--muted)}@media(min-width:650px){body{padding:18px 24px 110px}header{padding:16px 20px}.brand img{width:68px;height:74px}.brand h1{font-size:29px}.brand small{font-size:10px}.counter{font-size:15px;min-height:100px}.controls select{width:auto;flex:1}}
+.chart-plot svg{display:block;width:100%;height:auto;background:#0e1017;border-radius:14px}.chart-plot text{font:11px system-ui;fill:#f0f0f3}.chart-controls button{flex:1;padding:10px 6px}.chart-summary{font-size:13px;line-height:1.7}.reading-list{line-height:1.7;padding-left:20px}
 </style></head><body>
 <header><div class="brand"><img id="lionLogo" src="/operate/lion-logo.png" alt="Escudo de león dorado de Lion Trader" width="64" height="64"><div><h1>LION TRADER</h1><small>DISCIPLINA · ESTRUCTURA · PRECISIÓN</small></div></div><button id="openSettings" class="link-button">Enlazar</button></header>
 <div id="status" role="status" aria-live="polite">Introduce el token para consultar señales y operar.</div>
-<div id="visualNotice" class="visual-notice" role="alert" hidden><strong>Nueva confirmación</strong><p id="visualNoticeText"></p><button id="openNotice">Ver señal vigente</button></div>
+<div id="visualNotice" class="visual-notice" role="alert" hidden><strong>Nueva confirmación</strong><p id="visualNoticeText"></p><button id="openNotice">Ver señal vigente</button><button id="closeNotice">Cerrar aviso</button></div>
+<p id="connectionSummary" class="notice muted" role="status">Conecta para consultar las lecturas existentes.</p>
 <main>
-<section id="screenHome" aria-label="Inicio"><p class="mode-strip">ANÁLISIS 24/7 · DEMO EN EL SERVIDOR · REAL EXTERNO</p><div class="panel"><p class="section-eyebrow">CONEXIÓN Y VIGENCIA</p><h2>Estado del bot</h2><p id="homeConnection" class="status-line">Sin conexión. Conecta desde Ajustes.</p><p id="homeLastAnalysis" class="analysis-date">Último análisis: sin fecha registrada.</p><p id="homeDataState">Conecta para verificar los datos.</p><p id="homeDemo">DEMO automática: pendiente de consulta al servidor.</p><p id="homeSummary">Conecta para consultar confirmadas y señales en observación.</p></div><div class="counters"><button id="openMarkets" class="counter"><strong id="homeMarketCount">—</strong>Mercados<small>en catálogo</small></button><button id="openConfirmed" class="counter confirmed"><strong id="homeConfirmedCount">—</strong>Confirmadas<small>vigentes</small></button><button id="openWatch" class="counter watch"><strong id="homeWatchCount">—</strong>Vigilar<small>en observación</small></button></div><div class="section-heading"><h2>Oportunidades principales</h2><small>Top 3 · score</small></div><p class="notice muted">Primera confirmación en Costa Rica. Una puntuación alta conserva los bloqueos de calidad, mercado y riesgo.</p><p id="homeTopEmpty" class="empty-state">Conecta para consultar las oportunidades principales.</p><div id="homeTop" class="grid"></div><p class="app-version">LION TRADER · ANDROID 29.9.1 · 90/100 es puntuación de reglas</p></section>
+<section id="screenHome" aria-label="Inicio"><p class="mode-strip">ANÁLISIS 24/7 · DEMO EN EL SERVIDOR · REAL EXTERNO</p><div class="panel"><p class="section-eyebrow">CONEXIÓN Y VIGENCIA</p><h2>Estado del bot</h2><p id="homeConnection" class="status-line">Sin conexión. Conecta desde Ajustes.</p><p id="homeLastAnalysis" class="analysis-date">Último análisis: sin fecha registrada.</p><p id="homeDataState">Conecta para verificar los datos.</p><p id="homeDemo">DEMO automática: pendiente de consulta al servidor.</p><p id="homeSummary">Conecta para consultar confirmadas y señales en observación.</p></div><div class="counters"><button id="openMarkets" class="counter"><strong id="homeMarketCount">—</strong>Mercados<small>en catálogo</small></button><button id="openConfirmed" class="counter confirmed"><strong id="homeConfirmedCount">—</strong>Confirmadas<small>vigentes</small></button><button id="openWatch" class="counter watch"><strong id="homeWatchCount">—</strong>Vigilar<small>en observación</small></button></div><div class="section-heading"><h2>Oportunidades principales</h2><small>Top 3 · score</small></div><p class="notice muted">Primera confirmación en Costa Rica. Una puntuación alta conserva los bloqueos de calidad, mercado y riesgo.</p><p id="homeTopEmpty" class="empty-state">Conecta para consultar las oportunidades principales.</p><div id="homeTop" class="grid"></div><p class="app-version">LION TRADER · ANDROID 29.10.0 · 90/100 es puntuación de reglas</p></section>
 <section id="screenConfirmed" aria-label="Confirmadas" hidden><h2>Entradas confirmadas</h2><div class="controls"><select id="filter" aria-label="Estrategia"><option value="ALL">Todas las estrategias</option><option value="SMC">SMC</option><option value="HARMONIC_CONCEPT">Armónicos</option><option value="VELAS">Estudio de velas</option><option value="WYCKOFF">Wyckoff</option><option value="CONFLUENCIA">Confluencia de estrategias</option><option value="SMC_HARMONICOS">SMC + Armónicos</option></select><input id="confirmedMarket" placeholder="Filtrar mercado" aria-label="Filtrar confirmadas por mercado"></div><div class="controls" role="group" aria-label="Vigencia"><button id="viewConfirmed" aria-pressed="true">Vigentes</button><button id="viewExpired" aria-pressed="false">Caducadas</button><button id="viewWatch" aria-pressed="false">En observación</button></div><div id="opportunitiesPanel"><p class="notice muted">Mayor puntuación primero. Primera confirmación en Costa Rica con segundos; las caducadas se consultan por separado.</p><p id="opportunitiesSummary" role="status">Conecta para consultar las entradas detectadas.</p><div id="opportunities" class="grid"></div></div></section>
-<section id="screenAlerts" aria-label="Alertas" hidden><h2>Historial de alertas</h2><p class="notice muted">Avisos visuales solo con la app abierta y activa. Consulta nominal cada 15 segundos; sin avisos con la app cerrada. Toca un aviso para revisar su señal vigente.</p><ul id="alerts"></ul></section>
-<section id="screenSettings" aria-label="Ajustes" hidden><h2>Conexión al Worker</h2><div class="controls"><input id="token" type="password" placeholder="Token privado del Worker" autocomplete="off" aria-label="Token privado"><button id="connect">Conectar</button><button id="disconnect">Desconectar</button></div><p class="notice muted">El token se conserva solo en memoria hasta desconectar o cerrar la app. No introduzcas credenciales del broker.</p><div class="panel"><h2>Estado de las cuentas</h2><div id="account">Pendiente de consulta.</div><div class="controls"><button id="checkDemo">Comprobar DEMO</button><button id="checkReal" class="real">Comprobar cuenta REAL</button><button id="diagnose">Ver diagnóstico</button></div><p class="notice muted">DEMO automática continúa en el servidor cuando está habilitada. DEMO manual requiere checklist y revalidación. REAL: plan y ejecución manual externa en Capital.com; la APK no envía órdenes reales.</p><p class="notice muted">Planes: máximo 2% por entrada, pérdida diaria 2% y riesgo agregado 2%, sujetos a bloqueos monetarios. La APK no aplica esos límites a órdenes externas.</p></div><details id="diagnosticDetails" class="panel"><summary>Último diagnóstico</summary><pre id="diagnosticReport">Pulsa Ver diagnóstico para consultar las fases del cron.</pre></details><div class="panel notice"><h2>Estrategias activas las 24 horas</h2><p>SMC, armónicos, estudio de velas y Wyckoff analizan por separado, 24/7. Cualquiera puede confirmar desde 90/100; la confluencia no obliga a esperar a todas.</p><p>90/100 es puntuación de reglas, no una probabilidad de ganar del 90%. Se mantienen controles de calidad, mercado, riesgo y vigencia.</p></div></section>
+<section id="screenAlerts" aria-label="Alertas" hidden><h2>Alertas · <span id="alertCount">0</span> eventos</h2><h3>Lecturas vigentes confirmadas</h3><ul id="currentConfirmed" class="reading-list"></ul><h3>Lecturas vigentes en observación</h3><ul id="currentWatch" class="reading-list"></ul><h3>Historial de eventos</h3><p class="notice muted">Avisos visuales solo con la app abierta y activa. Consulta nominal cada 15 segundos; sin avisos con la app cerrada. Toca un aviso para revisar su señal vigente.</p><ul id="alerts"><li>Sin eventos. Conecta para consultar el historial.</li></ul></section>
+<section id="screenSettings" aria-label="Ajustes" hidden><h2>Conexión al Worker</h2><div class="controls"><input id="token" type="password" placeholder="Token privado del Worker" autocomplete="off" aria-label="Token privado"><button id="connect">Conectar</button><button id="disconnect">Desconectar</button><button id="forgetAccess">Olvidar acceso de este teléfono</button></div><p class="notice muted">El acceso se recuerda cifrado con AndroidKeystore en este teléfono después de verificar la conexión. Desconectar pausa el acceso automático; Olvidar lo elimina. No introduzcas credenciales del broker.</p><p id="accessStatus" class="notice" role="status">Acceso pendiente de verificar.</p><div class="panel"><h2>Estado de las cuentas</h2><div id="account">Pendiente de consulta.</div><div class="controls"><button id="checkDemo">Comprobar DEMO</button><button id="checkReal" class="real">Comprobar cuenta REAL</button><button id="diagnose">Ver diagnóstico</button></div><p class="notice muted">DEMO automática continúa en el servidor cuando está habilitada. DEMO manual requiere checklist y revalidación. REAL: plan y ejecución manual externa en Capital.com; la APK no envía órdenes reales.</p><p class="notice muted">Planes: máximo 2% por entrada, pérdida diaria 2% y riesgo agregado 2%, sujetos a bloqueos monetarios. La APK no aplica esos límites a órdenes externas.</p></div><section class="panel" aria-labelledby="realAutoTitle"><h2 id="realAutoTitle">REAL automático · hasta 3 entradas</h2><p class="notice">Margen y riesgo son distintos: el margen máximo por entrada no es la pérdida máxima al Stop Loss. Política fija: score ≥90/100, RR mínimo 1:2, preferido 1:3. Riesgo máximo 2% por entrada, pérdida diaria 2% y riesgo agregado 2%, sujetos a verificación monetaria.</p><p class="notice warn">Ejecución REAL bloqueada hasta implementar y verificar la conciliación monetaria de toda la cuenta. Verificar conexión o guardar acceso no habilita órdenes.</p><div class="controls"><label for="realMargin">Margen máximo por entrada (USD)</label><input id="realMargin" type="number" min="0.01" step="any" inputmode="decimal"><label for="realEntries">Cupo total de entradas</label><select id="realEntries"><option value="1">1 entrada</option><option value="2">2 entradas</option><option value="3" selected>3 entradas</option></select></div><p class="notice">Sesiones en UTC. Hora actual Costa Rica: <span id="realLocalTime"></span> · UTC−6. El análisis continúa 24/7 aunque todas las casillas estén desmarcadas. Marca solo las estrategias que autorizarías para entradas REAL en cada sesión.</p><div id="realStrategies"></div><p id="realAutoStatus" role="status" class="notice">Conecta para consultar disponibilidad del Worker.</p><p id="realAutoCampaign" class="notice">Sin campaña consultada.</p><ul id="realAutoBlockers" class="notice warn"></ul><div class="controls"><button id="refreshRealAuto">Consultar estado REAL</button><button id="previewRealAuto" disabled>Revisar configuración REAL</button></div><pre id="realAutoReview" class="notice">Sin revisión. Guardar o revisar no activa REAL.</pre><label class="check"><input id="confirmRealMoney" type="checkbox"><span>Entiendo que usará dinero real</span></label><div class="controls"><button id="activateRealAuto" class="real" disabled>Activar REAL automático</button><button id="stopRealAuto" disabled>Detener campaña REAL</button></div><p class="notice muted">El servidor cuenta entradas aceptadas y reservadas. Cerrar posiciones no repone el cupo. Detener no cierra posiciones ni elimina sus SL/TP. Desconectar u olvidar el acceso no detiene una campaña en el servidor; detenla aquí antes si procede.</p></section><details id="diagnosticDetails" class="panel"><summary>Último diagnóstico</summary><pre id="diagnosticReport">Pulsa Ver diagnóstico para consultar las fases del cron.</pre></details><div class="panel notice"><h2>Estrategias activas las 24 horas</h2><p>SMC, armónicos, estudio de velas y Wyckoff analizan por separado, 24/7. Cualquiera puede confirmar desde 90/100; la confluencia no obliga a esperar a todas.</p><p>90/100 es puntuación de reglas, no una probabilidad de ganar del 90%. Se mantienen controles de calidad, mercado, riesgo y vigencia.</p></div></section>
 <section id="screenMarkets" aria-label="Mercados" hidden><button id="backMarkets">Volver a Inicio</button><h2>Mercados</h2><div class="controls"><input id="marketSearch" placeholder="Buscar par" aria-label="Buscar par"><select id="marketFilter" aria-label="Estrategia"><option value="ALL">Todas las estrategias</option><option value="SMC">SMC</option><option value="HARMONIC_CONCEPT">Armónicos</option><option value="VELAS">Estudio de velas</option><option value="WYCKOFF">Wyckoff</option><option value="CONFLUENCIA">Confluencia de estrategias</option><option value="SMC_HARMONICOS">SMC + Armónicos</option></select><button id="discoverForex">Buscar más pares forex</button></div><p class="notice muted">El catálogo distingue pares analizados de pares disponibles. Buscar no amplía los pares activos del Worker.</p><div id="markets" class="grid"></div></section>
-<section id="screenDetail" aria-label="Detalle de entrada" hidden><button id="backDetail">Volver</button><h2>Detalle de entrada</h2><div id="detailContent"></div></section>
+<section id="screenDetail" aria-label="Detalle de entrada" hidden><button id="backDetail">Volver</button><h2>Detalle de entrada</h2><div id="detailContent"></div><section id="chartPanel" class="panel" hidden aria-label="Gráfico de precios del plan"><h3>Gráfico del plan</h3><div class="controls chart-controls" role="group" aria-label="Marco temporal"><button id="chartM5">M5</button><button id="chartM15">M15</button><button id="chartH1">H1</button><button id="chartH4">H4</button><button id="chartRefresh">Actualizar</button></div><p id="chartSummary" class="chart-summary" role="status" aria-live="polite"></p><div id="chartPlot" class="chart-plot"></div><p class="notice muted">Feed Capital DEMO; no es cotización REAL ni probabilidad de éxito. El gráfico no habilita entradas; revisa vigencia, dirección y checklist.</p></section></section>
 </main>
 <nav class="bottom-nav" aria-label="Navegación principal"><button id="tabHome" aria-selected="true">Inicio</button><button id="tabConfirmed" aria-selected="false">Confirmadas</button><button id="tabAlerts" aria-selected="false">Alertas</button><button id="tabSettings" aria-selected="false">Ajustes</button></nav>
 <dialog id="review"><h2 id="reviewTitle">Confirmar entrada</h2><pre id="reviewPlan"></pre><div id="checklist"></div><div class="controls"><button id="confirmOrder">Confirmar</button><button id="cancelOrder">Cancelar</button></div><p class="notice muted" id="reviewNote"></p></dialog>
@@ -23,25 +25,40 @@ let auth='',timer=null,clockTimer=null,cursor=0,baseline=true,busy=false,request
 let pending=null,submitting=false,reviewSequence=0,healthy=false,lastRead=null,currentTab='Home',detailSignal=null,detailOrigin='Confirmed';
 let opportunityView='CONFIRMED',lastAlertEvents=[],visualEvent=null,liveCards=[],lastAlertValidity='';
 const seen=new Set(),deferredNotices=new Map();
-const status=(message,error=false)=>{el('status').textContent=message;el('status').className=error?'error':'';};
+let chartFrame='M5',chartSequence=0,chartState=null;
+const chartFrames={M5:300000,M15:900000,H1:3600000,H4:14400000};
+const safeMessage=message=>auth?String(message).split(auth).join('[acceso privado]'):String(message);
+const status=(message,error=false)=>{el('status').textContent=safeMessage(message);el('status').className=error?'error':'';};
 function clearNotice(){visualEvent=null;el('visualNotice').hidden=true;}
 function closeReview(){reviewSequence++;pending=null;el('review').close();el('confirmOrder').disabled=true;}
 function invalidateData(message){
+  resetRealPreview();
   deferredNotices.clear();baseline=true;
-  healthy=false;closeReview();clearNotice();lastAlertEvents=[];el('alerts').replaceChildren(node('li','Avisos sin verificar. Espera una consulta nueva.'));
+  healthy=false;resetChart();closeReview();clearNotice();lastAlertEvents=[];el('alerts').replaceChildren(node('li','Avisos sin verificar. Espera una consulta nueva.'));
   if(loaded){renderSignals();showAccount(loaded);}
   else {el('opportunities').replaceChildren();el('markets').replaceChildren();}
-  showHome();status(message,true);
+  showCurrentReadings();el('alertCount').textContent='0';el('tabAlerts').textContent='Alertas · 0';showHome();status(message,true);
 }
-async function api(path,body){
+function accessVault(op,token){
+  try{if(typeof window.prompt!=='function')return {ok:false};const answer=JSON.parse(window.prompt('LION_ACCESS_V1',JSON.stringify(token===undefined?{op}:{op,token})));return answer && answer.ok===true?answer:{ok:false};}catch{return {ok:false};}
+}
+function validAccess(token){return typeof token==='string' && /^[\x20-\x7e]{24,4096}$/.test(token);}
+let saveAccessPending=false;
+function invalidateSession(message='Sesión no válida. Los permisos se retiraron.'){
+  const clean=safeMessage(message);requestEpoch++;busy=false;saveAccessPending=false;const paused=accessVault('pause');
+  auth='';el('token').value='';clearInterval(timer);clearInterval(clockTimer);invalidateData(clean);
+  el('accessStatus').textContent=paused.ok?'Acceso automático pausado por sesión rechazada. Introduce un token válido; el acceso cifrado se conserva.':'Sesión cerrada. No se pudo verificar el acceso guardado ni su pausa. Introduce de nuevo un token válido o usa Olvidar.';renderRealControls();
+}
+async function api(path,body,optional=false){
   if(!auth)throw Error('Conecta primero con tu token.');
   const epoch=requestEpoch,token=auth;
   try {
     const r=await fetch(path,{method:body?'POST':'GET',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,cache:'no-store'});
+    if(r.status===401 || r.status===403){if(epoch===requestEpoch)invalidateSession('Sesión no válida. Los permisos se retiraron.');throw Object.assign(Error('Sesión no válida.'),{httpStatus:r.status});}
     const data=await r.json();
-    if(!r.ok || data.status==='error')throw Error(data.detail || data.error || 'Error '+r.status);
+    if(!r.ok || data.status==='error')throw Object.assign(Error(String(data.detail || data.error || 'Error '+r.status).split(token).join('[acceso privado]')),{httpStatus:r.status,blockReasons:data.block_reasons});
     return data;
-  }catch(error){if(epoch===requestEpoch)invalidateData(error.message);throw error;}
+  }catch(error){if(epoch===requestEpoch && !optional)invalidateData(error.message);throw error;}
 }
 function node(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
 function fmt(v){return v===null || v===undefined?'N/D':String(v);}
@@ -69,7 +86,7 @@ function timingText(p,data){
 }
 
 function navigate(tab){
-  closeReview();detailSignal=null;currentTab=tab;
+  closeReview();resetChart();detailSignal=null;currentTab=tab;
   for(const name of ['Home','Confirmed','Alerts','Settings','Markets','Detail'])el('screen'+name).hidden=name!==tab;
   for(const name of ['Home','Confirmed','Alerts','Settings'])el('tab'+name).setAttribute('aria-selected',String(name===tab));
 }
@@ -144,7 +161,7 @@ function signalCard(p,data,actions=false,slot='opportunity'){
     const link=node('a','Abrir Capital.com para ejecución REAL manual externa ↗');link.href='https://capital.com/';link.target='_self';link.rel='noopener noreferrer';card.append(link);
     if(!canAct(p,p.direction,true))card.append(node('p','Preparación del ticket REAL bloqueada por vigencia, permisos o controles monetarios. El enlace externo no envía órdenes desde la APK.','warn notice'));
   }else{
-    const detail=node('button','Ver detalle');detail.onclick=()=>openDetail(p,slot==='home'?'Home':currentTab==='Markets'?'Markets':'Confirmed');card.append(detail);
+    const detail=node('button','Ver detalle y gráfico');detail.onclick=()=>openDetail(p,slot==='home'?'Home':currentTab==='Markets'?'Markets':'Confirmed');card.append(detail);
   }
   liveCards.push({p,data,timing,slot:actions?'detail':slot,wasFresh:view.fresh});return card;
 }
@@ -169,7 +186,7 @@ function showMarkets(data){
   }
 }
 function openDetail(p,origin){
-  closeReview();detailSignal=p;detailOrigin=origin;currentTab=origin;
+  closeReview();resetChart();chartFrame='M5';detailSignal=p;detailOrigin=origin;currentTab=origin;
   for(const name of ['Home','Confirmed','Alerts','Settings'])el('tab'+name).setAttribute('aria-selected',String(name===origin));
   for(const name of ['Home','Confirmed','Alerts','Settings','Markets'])el('screen'+name).hidden=true;
   el('screenDetail').hidden=false;renderDetail();
@@ -180,8 +197,11 @@ function renderDetail(){
   const current=activeSignal(detailSignal);
   if(current){detailSignal=current;el('detailContent').replaceChildren(signalCard(current,loaded,true));}
   else el('detailContent').replaceChildren(node('p','Señal reemplazada o no disponible. No ejecutar esta lectura.','warn'));
+  if(!current){resetChart();return;}
+  renderChart();
+  if(healthy && (!chartState || chartState.key!==chartIdentity(current)))loadChart();
 }
-function renderSignals(){if(loaded){showOpportunities(loaded);showMarkets(loaded);renderDetail();showHomeCards();}showHome();}
+function renderSignals(){if(loaded){showOpportunities(loaded);showMarkets(loaded);renderDetail();showHomeCards();}showCurrentReadings();showHome();}
 function eventSignal(event){
   return loaded?.items.find(p=>p.id===event.signal_id && p.market===event.market && (p.strategy_origin||p.analysis_mode)===event.strategy_origin && p.direction===event.direction && String(p.confirmation_event_id)===String(event.id));
 }
@@ -199,7 +219,8 @@ function showVisualNotice(event){
   visualEvent=event;el('visualNoticeText').textContent=event.market+' · '+event.strategy_origin+' · '+event.direction+' · '+fmt(event.confirmation_score)+'/100 · '+(eventExecutable(event)?'Revisa la señal antes de entrar.':'Entrada bloqueada; revisa el motivo.');el('visualNotice').hidden=false;
 }
 function showAlerts(events){
-  lastAlertEvents=events;lastAlertValidity=alertValidity(events);el('alerts').replaceChildren();
+  lastAlertEvents=events;lastAlertValidity=alertValidity(events);el('alerts').replaceChildren();el('alertCount').textContent=String(events.length);el('tabAlerts').textContent='Alertas · '+events.length;
+  if(!events.length)el('alerts').append(node('li','Sin eventos en el historial.','empty-state'));
   if(visualEvent){const current=events.find(e=>e.id===visualEvent.id);if(current && eventVisible(current))showVisualNotice(current);else clearNotice();}
   for(const event of [...events].reverse()){
     const state=!event.current?'reemplazada · no ejecutar':!eventVisible(event)?'caducada o reemplazada · no ejecutar':eventExecutable(event)?'operable DEMO · requiere confirmación':'permiso bloqueado · no ejecutar';
@@ -208,12 +229,82 @@ function showAlerts(events){
     const open=node('button','Ver señal');open.onclick=()=>openAlert(event);li.append(open);el('alerts').append(li);
   }
 }
+
+let currentReadingsKey='';
+function showCurrentReadings(){
+  const key=JSON.stringify([healthy,loaded?.items.map(p=>[p.id,p.confirmation_event_id,p.updated_at,p.market,p.analysis_mode,p.direction,p.score,p.confirmed,p.preconfirmed,p.operable,signalView(p,loaded).fresh])]);
+  if(key===currentReadingsKey)return;currentReadingsKey=key;
+  for(const [id,confirmed] of [['currentConfirmed',true],['currentWatch',false]]){
+    const readings=healthy && loaded?loaded.items.filter(p=>Boolean(p.confirmed)===confirmed && (p.confirmed||p.preconfirmed||p.operable) && signalView(p,loaded).fresh).sort((a,b)=>Number(b.score)-Number(a.score)):[];
+    el(id).replaceChildren(...(readings.length?readings.map(p=>{
+      const item=node('li',p.market+' · '+p.analysis_mode+' · '+p.direction+' · '+fmt(p.score)+'/100 · '+(confirmed?'Confirmada; conserva bloqueos.':'En observación; ejecución bloqueada.'));
+      const open=node('button','Ver lectura');open.onclick=()=>openDetail(p,'Alerts');item.append(open);return item;
+    }):[node('li',healthy?'Sin lecturas vigentes en este grupo.':'Lecturas sin verificar. Conecta o actualiza.') ]));
+  }
+}
+function chartIdentity(p){return JSON.stringify([p.id,p.market,p.analysis_mode,p.direction,p.confirmation_event_id,p.updated_at,p.entry,p.stop_loss,p.tp1,p.tp2,p.tp3]);}
+function resetChart(){chartSequence++;chartState=null;el('chartPanel').hidden=true;el('chartPlot').replaceChildren();}
+function chartContext(key,frame,epoch,sequence){return epoch===requestEpoch && sequence===chartSequence && !document.hidden && !el('screenDetail').hidden && detailSignal && chartIdentity(activeSignal(detailSignal)||{})===key && chartFrame===frame;}
+function chartMessage(message){el('chartPlot').replaceChildren();el('chartSummary').textContent=message;}
+function svgNode(tag,attributes,text){
+  const n=document.createElementNS('http://www.w3.org/2000/svg',tag);
+  for(const [key,value] of Object.entries(attributes))n.setAttribute(key,String(value));
+  if(text!==undefined)n.textContent=text;return n;
+}
+function renderChart(){
+  if(!detailSignal || el('screenDetail').hidden)return;
+  el('chartPanel').hidden=false;
+  for(const frame of Object.keys(chartFrames)){el('chart'+frame).disabled=!healthy || !auth;el('chart'+frame).setAttribute('aria-pressed',String(chartFrame===frame));}
+  el('chartRefresh').disabled=!healthy || !auth;
+  if(!healthy){chartMessage('Gráfico sin verificar. Espera una consulta autenticada nueva.');return;}
+  const heading=detailSignal.market+' · '+chartFrame+' · Capital DEMO. ';
+  if(!chartState || chartState.loading){chartMessage(heading+'Consultando velas…');return;}
+  if(chartState.error){chartMessage(heading+chartState.error);return;}
+  const rows=chartState.data.candles;
+  if(!rows.length){chartMessage(heading+'Sin velas disponibles.');return;}
+  const last=Date.parse(rows.at(-1).time),age=serverNow()-last;
+  if(age>chartFrames[chartFrame]*2+60000 || age < -60000){chartMessage(heading+'Datos antiguos o reloj sin verificar. Última vela: '+localStamp(rows.at(-1).time)+'.');return;}
+  const levels=[['Entrada',detailSignal.entry],['SL',detailSignal.stop_loss],['TP1',detailSignal.tp1],['TP2',detailSignal.tp2],['TP3',detailSignal.tp3]].filter(([,v])=>typeof v==='number' && Number.isFinite(v) && v>0);
+  const values=[...rows.flatMap(r=>[r.low,r.high]),...levels.map(([,v])=>v)];
+  const low=Math.min(...values),high=Math.max(...values),padding=(high-low)*.08 || Math.abs(high)*.01 || 1,min=low-padding,max=high+padding;
+  const y=value=>260-(value-min)/(max-min)*240;
+  const summary=heading+rows.length+' velas OHLC. Última vela: '+localStamp(rows.at(-1).time)+'. '+levels.map(([name,v])=>name+' '+v).join(' · ')+'. Vigencia calculada por hora local; calidad del servidor no disponible.';
+  const svg=svgNode('svg',{viewBox:'0 0 640 280',role:'img','aria-label':summary});svg.append(svgNode('title',{},summary));
+  for(const [label,value] of levels){const py=y(value);svg.append(svgNode('line',{x1:12,x2:630,y1:py,y2:py,stroke:label==='SL'?'#ffadb6':'#e9c65a','stroke-dasharray':'4 4'}),svgNode('text',{x:450,y:Math.max(12,py-4)},label+' '+value));}
+  const step=420/rows.length,width=Math.max(1,Math.min(12,step*.65));
+  rows.forEach((r,i)=>{const x=16+(i+.5)*step,color=r.close>=r.open?'#6fe0b4':'#ffadb6';svg.append(svgNode('line',{x1:x,x2:x,y1:y(r.high),y2:y(r.low),stroke:color}),svgNode('rect',{x:x-width/2,y:Math.min(y(r.open),y(r.close)),width,height:Math.max(1,Math.abs(y(r.open)-y(r.close))),fill:color}));});
+  el('chartPlot').replaceChildren(svg);el('chartSummary').textContent=summary;
+}
+async function loadChart(){
+  const p=detailSignal && activeSignal(detailSignal);if(!p || !healthy || !auth || document.hidden || el('screenDetail').hidden)return;
+  const key=chartIdentity(p),frame=chartFrame,epoch=requestEpoch,sequence=++chartSequence,token=auth;
+  chartState={key,loading:true};renderChart();
+  try{
+    const response=await fetch('/api/v1/chart?market='+encodeURIComponent(p.market)+'&timeframe='+frame+'&count=60',{method:'GET',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},cache:'no-store'});
+    if(!chartContext(key,frame,epoch,sequence))return;
+    if(response.status===401 || response.status===403){invalidateSession();return;}
+    if(!response.ok)throw Error('Gráfico no disponible. Intenta actualizar.');
+    const data=await response.json();if(!chartContext(key,frame,epoch,sequence))return;
+    if(data.status!=='ok' || data.market!==p.market || data.timeframe!==frame || !Array.isArray(data.candles))throw Error('Datos de gráfico inválidos o sin correspondencia.');
+    let previous=-Infinity;
+    for(const row of data.candles){
+      const time=Date.parse(row?.time);
+      if(!row || typeof row.time!=='string' || !Number.isFinite(time) || time<=previous || !['open','high','low','close'].every(field=>typeof row[field]==='number' && Number.isFinite(row[field]) && row[field]>0) || row.low>Math.min(row.open,row.close) || row.high<Math.max(row.open,row.close) || row.low>row.high)throw Error('Datos OHLC u horas inválidos.');
+      previous=time;
+    }
+    chartState={key,data};renderChart();
+  }catch(error){if(chartContext(key,frame,epoch,sequence)){chartState={key,error:error.message==='Datos OHLC u horas inválidos.' || error.message==='Datos de gráfico inválidos o sin correspondencia.'?error.message:'Gráfico no disponible. Intenta actualizar.'};renderChart();}}
+}
+for(const frame of Object.keys(chartFrames))el('chart'+frame).onclick=()=>{chartFrame=frame;return loadChart();};
+el('chartRefresh').onclick=()=>loadChart();
+
 function pendingValid(current){
   return Boolean(current && !current.loading && Date.parse(current.expires)>serverNow() && canAct(current.signal,current.action,current.real));
 }
 function alertValidity(events){return events.map(e=>e.id+':'+eventVisible(e)+':'+eventExecutable(e)).join('|');}
 function tickValidity(){
   if(document.hidden)return;
+  renderRealControls();
   let expired=false;
   for(const entry of liveCards){
     const fresh=signalView(entry.p,entry.data).fresh;
@@ -224,6 +315,8 @@ function tickValidity(){
   if(expired)renderSignals();else showHome();
   if(pending && !pending.loading && !pendingValid(pending)){reviewSequence++;pending=null;el('confirmOrder').disabled=true;el('reviewNote').textContent='La señal o la revisión caducó o cambió. Cierra y solicita una revisión nueva.';}
   if(visualEvent && !eventVisible(visualEvent))clearNotice();
+  if(chartState?.data)renderChart();
+  showCurrentReadings();
   if(healthy && alertValidity(lastAlertEvents)!==lastAlertValidity)showAlerts(lastAlertEvents);
 }
 async function refresh(){
@@ -237,7 +330,9 @@ async function refresh(){
     if(!baseline){let hasMore=true;while(hasMore){const feed=await api('/api/v1/notifications?after_id='+nextCursor+'&limit=100');if(epoch!==requestEpoch || document.hidden)return;incoming.push(...feed.items);nextCursor=feed.cursor;hasMore=feed.has_more;}}
     const recent=await api('/api/v1/notifications?recent=true&limit=30');if(epoch!==requestEpoch || document.hidden)return;
     if(baseline){deferredNotices.clear();incoming.length=0;}
+    const initial=baseline;
     loaded=data;lastRead=data.server_time;healthy=true;cursor=baseline?recent.cursor:nextCursor;baseline=false;
+    if(initial)el('connectionSummary').textContent=data.items.filter(p=>p.confirmed && signalView(p,data).fresh).length+' confirmadas existentes al conectar. Consulta las lecturas vigentes; este resumen no es un evento.';
     renderSignals();showAccount(data);
     for(const event of incoming)if(!seen.has(event.id))deferredNotices.set(event.id,event);
     // A cron can confirm after the signal snapshot but before the feed request.
@@ -252,6 +347,7 @@ async function refresh(){
       }
     }
     showAlerts(recent.items);tickValidity();status('Actualizado '+localStamp(data.server_time)+' · Avisos solo con la app abierta y activa.');
+    if(saveAccessPending){saveAccessPending=false;const saved=accessVault('save',auth);el('accessStatus').textContent=saved.ok?'Acceso recordado cifrado en este teléfono. Conexión automática habilitada.':'No se pudo recordar el acceso en este teléfono. Las lecturas verificadas siguen disponibles.';}
   }catch(error){if(epoch===requestEpoch)invalidateData(error.message);}
   finally{if(epoch===requestEpoch)busy=false;}
 }
@@ -286,25 +382,36 @@ el('confirmOrder').onclick=async()=>{
   finally{submitting=false;}
 };
 el('cancelOrder').onclick=closeReview;el('review').addEventListener('cancel',closeReview);
+function startSession(token,remember=true){
+  requestEpoch++;resetChart();busy=false;auth=token;saveAccessPending=remember;resetRealPreview();realAutoState=null;el('token').value='';loaded=null;lastRead=null;serverOffset=0;healthy=false;cursor=0;baseline=true;seen.clear();deferredNotices.clear();closeReview();clearNotice();lastAlertEvents=[];el('alerts').replaceChildren();el('opportunities').replaceChildren();el('markets').replaceChildren();el('detailContent').replaceChildren();showHome();renderRealControls();
+  clearInterval(timer);clearInterval(clockTimer);timer=setInterval(async()=>{await refresh();if(auth && healthy)await refreshRealAuto();},15000);clockTimer=setInterval(tickValidity,1000);
+  const epoch=requestEpoch;return refresh().then(async()=>{if(epoch===requestEpoch && healthy)await refreshRealAuto();});
+}
 el('connect').onclick=()=>{
-  const token=el('token').value.trim();if(token.length<24){status('Introduce el token privado completo.',true);return;}
-  requestEpoch++;busy=false;auth=token;el('token').value='';loaded=null;lastRead=null;serverOffset=0;healthy=false;cursor=0;baseline=true;seen.clear();deferredNotices.clear();closeReview();clearNotice();lastAlertEvents=[];el('alerts').replaceChildren();el('opportunities').replaceChildren();el('markets').replaceChildren();el('detailContent').replaceChildren();showHome();
-  clearInterval(timer);clearInterval(clockTimer);timer=setInterval(refresh,15000);clockTimer=setInterval(tickValidity,1000);return refresh();
+  let token=el('token').value.trim();
+  if(!token){const saved=accessVault('load');if(saved.ok)token=saved.token;}
+  if(!validAccess(token)){status('Introduce el token privado completo.',true);return;}
+  return startSession(token);
 };
-el('disconnect').onclick=()=>{
-  auth='';el('token').value='';requestEpoch++;busy=false;clearInterval(timer);clearInterval(clockTimer);closeReview();loaded=null;healthy=false;lastRead=null;serverOffset=0;lastAlertEvents=[];seen.clear();deferredNotices.clear();baseline=true;clearNotice();el('opportunities').replaceChildren();el('opportunitiesSummary').textContent='Conecta para consultar las entradas detectadas.';el('detailContent').replaceChildren(node('p','Desconectado. Acciones retiradas.'));el('markets').replaceChildren();el('alerts').replaceChildren();el('account').textContent='Desconectado.';showHome();status('Desconectado. Token eliminado de la memoria de esta app.');
-};
+function disconnectSession(){
+  saveAccessPending=false;resetRealPreview();
+  auth='';el('token').value='';requestEpoch++;resetChart();busy=false;clearInterval(timer);clearInterval(clockTimer);closeReview();loaded=null;healthy=false;lastRead=null;serverOffset=0;lastAlertEvents=[];seen.clear();deferredNotices.clear();baseline=true;clearNotice();el('opportunities').replaceChildren();el('opportunitiesSummary').textContent='Conecta para consultar las entradas detectadas.';el('detailContent').replaceChildren(node('p','Desconectado. Acciones retiradas.'));el('markets').replaceChildren();el('alerts').replaceChildren();el('account').textContent='Desconectado.';el('alertCount').textContent='0';el('tabAlerts').textContent='Alertas · 0';el('alerts').replaceChildren(node('li','Sin eventos verificados. Conecta para consultar el historial.'));el('connectionSummary').textContent='Conecta para consultar las lecturas existentes.';showCurrentReadings();showHome();renderRealControls();status('Desconectado. Token eliminado de la memoria de esta app.');
+}
+el('disconnect').onclick=()=>{const paused=accessVault('pause');disconnectSession();el('accessStatus').textContent=(paused.ok?'Acceso automático pausado. El acceso cifrado se conserva.':'No se pudo pausar el acceso guardado. Usa Olvidar o vuelve a intentarlo.')+campaignReminder();};
+el('forgetAccess').onclick=()=>{const cleared=accessVault('clear');disconnectSession();el('accessStatus').textContent=(cleared.ok?'Acceso olvidado en este teléfono.':'No se pudo eliminar el acceso cifrado del teléfono. Vuelve a intentarlo.')+campaignReminder();};
 for(const name of ['Home','Confirmed','Alerts','Settings'])el('tab'+name).onclick=()=>navigate(name);
 function openGlobalOpportunities(view){el('filter').value='ALL';el('confirmedMarket').value='';opportunityView=view;if(loaded)showOpportunities(loaded);navigate('Confirmed');}
 el('openConfirmed').onclick=()=>openGlobalOpportunities('CONFIRMED');el('openWatch').onclick=()=>openGlobalOpportunities('WATCH');el('openSettings').onclick=()=>navigate('Settings');el('openMarkets').onclick=()=>{el('marketFilter').value='ALL';el('marketSearch').value='';if(loaded)showMarkets(loaded);navigate('Markets');};el('backMarkets').onclick=()=>navigate('Home');el('backDetail').onclick=handleAppBack;
-el('openNotice').onclick=()=>{if(visualEvent)openAlert(visualEvent);};
+el('openNotice').onclick=()=>{if(visualEvent && eventVisible(visualEvent)){openAlert(visualEvent);clearNotice();}};
+el('closeNotice').onclick=clearNotice;
 for(const [id,view] of [['viewConfirmed','CONFIRMED'],['viewExpired','EXPIRED'],['viewWatch','WATCH']])el(id).onclick=()=>{opportunityView=view;if(loaded)showOpportunities(loaded);};
 el('filter').onchange=()=>{if(loaded)showOpportunities(loaded);};el('confirmedMarket').oninput=()=>{if(loaded)showOpportunities(loaded);};
 el('marketFilter').onchange=()=>{if(loaded)showMarkets(loaded);};el('marketSearch').oninput=()=>{if(loaded)showMarkets(loaded);};
 document.addEventListener('visibilitychange',()=>{
   // A suspended request must not overwrite the new foreground session snapshot.
-  requestEpoch++;busy=false;
+  requestEpoch++;resetChart();busy=false;
   clearNotice();deferredNotices.clear();baseline=true;
+  resetRealPreview();
   if(document.hidden){healthy=false;closeReview();renderSignals();return;}
   return refresh();
 });
@@ -313,5 +420,83 @@ el('checkReal').onclick=async()=>{try{status('Comprobando sesión y cuenta real,
 el('discoverForex').onclick=async()=>{el('discoverForex').disabled=true;try{const data=await api('/api/v1/forex/discover',{});await refresh();status('Búsqueda '+data.search_currency+': '+data.observed_pairs+' pares observados. Próxima moneda: '+data.next_currency+'. Los nuevos pares quedan en catálogo; selecciona hasta 28 en LION_ACTIVE_MARKETS para analizarlos.');}catch(e){status(e.message,true);}finally{el('discoverForex').disabled=false;}};
 el('diagnose').onclick=async()=>{try{const data=await api('/api/v1/diagnostics');const report=['Diagnóstico: '+(data.blockers.join(' · ') || 'sin bloqueos generales'),'Cron: '+(data.cron.progress?.phase || 'sin registro')+' · Fase registrada: '+localStamp(data.cron.progress?.at),'Último inicio: '+localStamp(data.cron.started?.started_at),'Último final: '+localStamp(data.cron.completed?.completed_at),'Bloqueo cron: '+fmt(data.health?.cron_status?.lock_held)+' · Último solape: '+localStamp(data.health?.cron_status?.last_overlap_at),'Ciclo nominal: '+fmt(data.scan?.nominal_turn_seconds)+' segundos · Vigencia máxima: '+fmt(data.scan?.max_signal_age_seconds)+' segundos','Errores del último ciclo: '+JSON.stringify(data.cron.completed?.errors || []),'Señales: '+JSON.stringify(data.by_strategy),'Bloqueos de señales: '+JSON.stringify(data.block_reasons)].join('\n');el('diagnosticReport').textContent=report;el('diagnosticDetails').open=true;status('Diagnóstico actualizado. El informe permanece en Ajustes.');}catch(e){status(e.message,true);}};
 
+
+const realSessions=[['ASIA','00–07'],['LONDRES','07–12'],['SOLAPE_LONDRES_NY','12–16'],['NUEVA_YORK','16–21'],['FUERA_SESION_PRINCIPAL','21–24']];
+const realStrategyNames=['SMC','HARMONIC_CONCEPT','VELAS','WYCKOFF','SMC_HARMONICOS','CONFLUENCIA'];
+let realAutoState=null,realPreview=null,realConfigVersion=0,realPreviewSequence=0,realStatusSequence=0,realOperationPending=false,realStopPending=false;
+const realChecks=new Map();
+for(const [session,hours] of realSessions){
+  const group=node('fieldset');group.append(node('legend',session+' · '+hours+' UTC'));const checks=[];
+  for(const strategy of realStrategyNames){const label=node('label',undefined,'check'),check=node('input');check.type='checkbox';check.checked=false;check.onchange=realConfigChanged;checks.push({strategy,check});label.append(check,node('span',strategy));group.append(label);}
+  realChecks.set(session,checks);el('realStrategies').append(group);
+}
+el('realEntries').value='3';
+function campaignReminder(){return realAutoState?.campaign && ['ARMED','STOPPING'].includes(realAutoState.campaign.state)?' La campaña permanece en el servidor. Reconecta para consultar o detenerla.':' Desconectar u olvidar no detiene campañas del servidor.';}
+function reasonText(code){
+  const labels={REAL_DAILY_LOSS_UNVERIFIED:'Pérdida diaria sin verificar: falta conciliación monetaria de toda la cuenta.',REAL_AGGREGATE_RISK_UNVERIFIED:'Riesgo agregado sin verificar para todas las posiciones y órdenes.',REAL_ACCOUNT_LEVERAGE_UNVERIFIED:'Apalancamiento y margen de la cuenta sin verificar.',REAL_UNCERTAIN_ORDER_RECONCILE_FIRST:'Hay envíos o reservas pendientes de conciliación; no se puede reactivar.',REAL_SECRETS_MISSING:'Falta configurar el acceso REAL en el servidor.',REAL_CAMPAIGN_ALREADY_ACTIVE:'Ya existe una campaña activa en el servidor.',REAL_ACCOUNT_SNAPSHOT_UNAVAILABLE:'No se pudo verificar la cuenta REAL.',REAL_ACCOUNT_USD_REQUIRED:'La cuenta REAL debe estar en USD.',REAL_CONFIGURATION_CHANGED:'La configuración del servidor cambió. Solicita una nueva revisión.',TOKEN_INVALID_OR_EXPIRED:'La revisión caducó o ya fue utilizada.'};
+  return labels[code] || 'Bloqueo del servidor: '+(/^[A-Z0-9_]{1,100}$/.test(String(code))?code:'detalle no disponible');
+}
+function realBlockers(reasons){el('realAutoBlockers').replaceChildren(...(Array.isArray(reasons)?reasons:['REAL_RESPONSE_UNVERIFIED']).map(code=>node('li',reasonText(code))));}
+function realConfig(){return {margin_usd:Number(el('realMargin').value),max_entries:Number(el('realEntries').value),strategies_by_session:Object.fromEntries([...realChecks].map(([session,checks])=>[session,checks.filter(c=>c.check.checked).map(c=>c.strategy)]))};}
+function validRealConfig(config){return Number.isFinite(config.margin_usd) && config.margin_usd>0 && Number.isInteger(config.max_entries) && config.max_entries>=1 && config.max_entries<=3 && Object.values(config.strategies_by_session).some(s=>s.length);}
+function resetRealPreview(){realPreviewSequence++;realPreview=null;el('confirmRealMoney').checked=false;el('activateRealAuto').disabled=true;}
+function realConfigChanged(){realConfigVersion++;resetRealPreview();el('realAutoReview').textContent='Configuración modificada. Solicita una nueva revisión; no se ha activado REAL.';renderRealControls();}
+function renderRealControls(){
+  const valid=Boolean(auth && healthy && realAutoState?.supported===true);
+  if(realPreview && Date.parse(realPreview.expires_at)<=serverNow()){resetRealPreview();el('realAutoReview').textContent='La revisión caducó. Solicita una nueva revisión.';}
+  el('realLocalTime').textContent=localStamp(new Date(serverNow()).toISOString());
+  el('previewRealAuto').disabled=!valid || realOperationPending;
+  el('activateRealAuto').disabled=!(valid && realPreview && realPreview.version===realConfigVersion && Date.parse(realPreview.expires_at)>serverNow() && realPreview.block_reasons.length===0 && el('confirmRealMoney').checked && !realOperationPending);
+  el('refreshRealAuto').disabled=!auth || realStopPending;
+  const campaign=realAutoState?.campaign;
+  el('stopRealAuto').disabled=!auth || !campaign?.id || !['ARMED','STOPPING'].includes(campaign.state) || realStopPending;
+  el('realAutoCampaign').textContent=campaign?'Campaña '+fmt(campaign.state)+' · aceptadas '+fmt(campaign.accepted_count)+' · reservadas '+fmt(campaign.reserved_count)+' · cupo total '+fmt(campaign.max_entries)+'. Cerrar posiciones no repone el cupo.':'Sin campaña consultada.';
+}
+async function refreshRealAuto(){
+  if(!auth || document.hidden)return;const epoch=requestEpoch,sequence=++realStatusSequence;resetRealPreview();
+  try{const data=await api('/api/v1/real-auto/status',undefined,true);if(epoch!==requestEpoch || sequence!==realStatusSequence)return;
+    if(data.status!=='ok' || data.supported!==true)throw Error('Unsupported');realAutoState=data;
+    el('realAutoStatus').textContent=data.armed?'Campaña activa según el servidor. Consulta sus bloqueos y cupo.':'REAL sin activar. Estado del servidor consultado; esta consulta no envía órdenes.';realBlockers(data.block_reasons);
+  }catch(error){if(epoch!==requestEpoch || sequence!==realStatusSequence)return;realAutoState={supported:false,campaign:realAutoState?.campaign||null};el('realAutoStatus').textContent=error.httpStatus===404?'Esta función requiere Worker 29.10. Las señales existentes siguen disponibles.':'No se pudo consultar el estado REAL. Las señales verificadas conservan su estado.';realBlockers(['REAL_STATUS_UNVERIFIED']);}
+  finally{if(epoch===requestEpoch)renderRealControls();}
+}
+el('refreshRealAuto').onclick=refreshRealAuto;
+el('realMargin').oninput=realConfigChanged;el('realEntries').onchange=realConfigChanged;el('confirmRealMoney').onchange=renderRealControls;
+el('previewRealAuto').onclick=async()=>{
+  if(realOperationPending || !auth || !healthy || !realAutoState?.supported)return;resetRealPreview();const config=realConfig();
+  if(!validRealConfig(config)){el('realAutoReview').textContent='Introduce un margen USD positivo, un cupo entero de 1 a 3 y al menos una estrategia por sesión elegida.';renderRealControls();return;}
+  const epoch=requestEpoch,version=realConfigVersion,sequence=realPreviewSequence;realOperationPending=true;renderRealControls();el('realAutoStatus').textContent='Revisando cuenta y configuración REAL. Esta revisión no activa órdenes…';
+  try{const data=await api('/api/v1/real-auto/preview',config,true);if(epoch!==requestEpoch || version!==realConfigVersion || sequence!==realPreviewSequence || !healthy)return;
+    if(data.status!=='preview' || typeof data.approval_token!=='string' || !data.approval_token || !Number.isFinite(Date.parse(data.expires_at)) || !data.review || !Array.isArray(data.block_reasons))throw Error('Invalid preview');
+    realPreview={...data,version};realBlockers(data.block_reasons);const review=data.review;
+    el('realAutoReview').textContent='Margen máximo por entrada: USD '+fmt(review.margin_usd)+'\nCupo total: '+fmt(review.max_entries)+' entradas\nRiesgo máximo al SL: 2% por entrada; pérdida diaria 2%; riesgo agregado 2%. El margen no es el riesgo.\nSesiones autorizadas: '+Object.entries(review.strategies_by_session||config.strategies_by_session).map(([name,strategies])=>name+': '+(strategies.join(', ')||'ninguna')).join(' · ')+'\nVálida hasta '+localStamp(data.expires_at)+'.';
+    el('realAutoStatus').textContent=data.block_reasons.length?'Revisión bloqueada. No hay autorización de ejecución REAL.':'Revisión disponible. Requiere confirmación expresa antes de activar REAL.';
+  }catch(error){if(epoch===requestEpoch && sequence===realPreviewSequence){resetRealPreview();realBlockers(error.blockReasons||['REAL_PREVIEW_FAILED']);el('realAutoStatus').textContent='No se pudo revisar REAL. Solicita una revisión nueva.';}}
+  finally{realOperationPending=false;renderRealControls();}
+};
+el('activateRealAuto').onclick=async()=>{
+  renderRealControls();if(el('activateRealAuto').disabled)return;
+  const preview=realPreview,epoch=requestEpoch;resetRealPreview();realOperationPending=true;renderRealControls();el('realAutoStatus').textContent='Activación pendiente de respuesta del servidor. No repitas el envío…';
+  try{const data=await api('/api/v1/real-auto/activate',{approval_token:preview.approval_token,confirm_real_money:true},true);if(epoch!==requestEpoch)return;
+    if(data.campaign)realAutoState={...realAutoState,campaign:data.campaign,armed:data.campaign.state==='ARMED'};
+    el('realAutoStatus').textContent='Solicitud de activación aceptada por el servidor. Consulta estado y cupo.';realBlockers(data.block_reasons||[]);
+  }catch(error){if(epoch===requestEpoch){realBlockers(error.blockReasons||['REAL_ACTIVATION_UNVERIFIED']);el('realAutoStatus').textContent='Activación no confirmada. No se reintentará automáticamente. Consulta el estado antes de solicitar otra revisión.';}}
+  finally{realOperationPending=false;renderRealControls();}
+};
+el('stopRealAuto').onclick=async()=>{
+  if(realStopPending || !auth || !realAutoState?.campaign?.id)return;const epoch=requestEpoch,id=realAutoState.campaign.id;realStopPending=true;resetRealPreview();renderRealControls();el('realAutoStatus').textContent='Detención pendiente de respuesta del servidor…';
+  try{const data=await api('/api/v1/real-auto/stop',{campaign_id:id},true);if(epoch!==requestEpoch)return;if(data.campaign)realAutoState={...realAutoState,campaign:data.campaign,armed:data.campaign.state==='ARMED'};
+    el('realAutoStatus').textContent='Solicitud de detención aceptada por el servidor. Los SL/TP y las posiciones existentes se conservan.';
+  }catch(error){if(epoch===requestEpoch)el('realAutoStatus').textContent='No se pudo detener la campaña. Su estado no se ha cambiado aquí. Consulta el estado o vuelve a intentar detenerla.';}
+  finally{realStopPending=false;renderRealControls();}
+};
+renderRealControls();
+
 navigate('Home');
+async function restoreAccess(){
+  const restored=accessVault('load');
+  if(restored.ok && restored.autoConnect===true && validAccess(restored.token))await startSession(restored.token,false);
+  else if(restored.ok && validAccess(restored.token))el('accessStatus').textContent='Acceso guardado y pausado. Pulsa Conectar sin volver a escribirlo.';
+}
+const accessBootstrap=restoreAccess();
 </script></body></html>

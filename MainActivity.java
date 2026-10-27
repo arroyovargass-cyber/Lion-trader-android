@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.CookieManager;
+import android.webkit.JsPromptResult;
 import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -21,6 +22,7 @@ import java.io.ByteArrayInputStream;
 public final class MainActivity extends Activity {
     private WebView web;
     private LinearLayout container;
+    private TokenVault tokenVault;
 
     @Override public void onCreate(Bundle state) {
         super.onCreate(state);
@@ -28,6 +30,7 @@ public final class MainActivity extends Activity {
         container.setBackgroundColor(Color.rgb(11,16,25));
         container.setFitsSystemWindows(true);
         setContentView(container);
+        tokenVault = new TokenVault(this);
         openPanel();
     }
 
@@ -49,7 +52,16 @@ public final class MainActivity extends Activity {
         settings.setJavaScriptCanOpenWindowsAutomatically(false);
         CookieManager.getInstance().setAcceptCookie(false);
         WebView.setWebContentsDebuggingEnabled(false);
-        web.setWebChromeClient(new WebChromeClient());
+        web.setWebChromeClient(new WebChromeClient() {
+            @Override public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
+                if (!AccessPromptPolicy.allows(url, view == null ? null : view.getUrl(), view != null && view == web, message)) {
+                    result.confirm("{\"ok\":false,\"autoConnect\":false,\"error\":\"access_denied\"}");
+                    return true;
+                }
+                result.confirm(tokenVault.execute(defaultValue));
+                return true;
+            }
+        });
         web.setWebViewClient(new WebViewClient() {
             @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 String value = request.getUrl().toString();
@@ -78,10 +90,11 @@ public final class MainActivity extends Activity {
                 return new WebResourceResponse("text/plain","UTF-8",403,"Blocked",java.util.Collections.emptyMap(),new ByteArrayInputStream(new byte[0]));
             }
             @Override public boolean onRenderProcessGone(WebView view, RenderProcessGoneDetail detail) {
+                if (view != web) { view.destroy(); return true; }
                 container.removeView(view);
                 view.destroy();
                 web=null;
-                Toast.makeText(MainActivity.this,"El panel se reinició. Conecta otra vez con tu token.",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this,"El panel se reinició. Se comprobará el acceso guardado y tu ajuste de conexión.",Toast.LENGTH_LONG).show();
                 openPanel();
                 return true;
             }

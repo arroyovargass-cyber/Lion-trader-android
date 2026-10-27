@@ -8,8 +8,9 @@ android {
         applicationId 'com.liontrader.android'
         minSdk 26
         targetSdk 35
-        versionCode 29901
-        versionName '29.9.1'
+        versionCode 291000
+        versionName '29.10.0'
+        testInstrumentationRunner 'com.liontrader.android.TokenVaultInstrumentation'
     }
     sourceSets {
         main {
@@ -17,6 +18,11 @@ android {
             java.srcDirs = ['src']
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
+        }
+        androidTest {
+            manifest.srcFile 'native-test/AndroidManifest.xml'
+            java.srcDirs = ['native-test/src']
+            assets.srcDirs = ['native-test/assets']
         }
     }
     compileOptions {
