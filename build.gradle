@@ -8,8 +8,8 @@ android {
         applicationId 'com.liontrader.android'
         minSdk 26
         targetSdk 35
-        versionCode 29801
-        versionName '29.8.1'
+        versionCode 29901
+        versionName '29.9.1'
     }
     sourceSets {
         main {

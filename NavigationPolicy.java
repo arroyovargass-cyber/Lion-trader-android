@@ -24,6 +24,11 @@ public final class NavigationPolicy {
         URI uri = parse(value);
         return isWorker(value) && ("/operate/".equals(uri.getPath()) || "/operate".equals(uri.getPath()));
     }
+    public static boolean isLogo(String value) {
+        URI uri = parse(value);
+        return isWorker(value) && "/operate/lion-logo.png".equals(uri.getRawPath())
+                && uri.getRawQuery() == null && uri.getRawFragment() == null;
+    }
     public static boolean isCapital(String value) {
         URI uri = parse(value);
         return secure(uri) && ("capital.com".equalsIgnoreCase(uri.getHost()) || "www.capital.com".equalsIgnoreCase(uri.getHost()));

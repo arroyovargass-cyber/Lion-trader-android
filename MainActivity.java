@@ -62,6 +62,12 @@ public final class MainActivity extends Activity {
             }
             @Override public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
                 String value = request.getUrl().toString();
+                if ("GET".equals(request.getMethod()) && NavigationPolicy.isLogo(value)) {
+                    try { return new WebResourceResponse("image/png", null, getAssets().open("lion-logo.png")); }
+                    catch (java.io.IOException e) {
+                        return new WebResourceResponse("text/plain", "UTF-8", 404, "Not Found", java.util.Collections.emptyMap(), new ByteArrayInputStream(new byte[0]));
+                    }
+                }
                 if (request.isForMainFrame() && "GET".equals(request.getMethod()) && NavigationPolicy.isDocument(value)) {
                     try { return new WebResourceResponse("text/html", "UTF-8", getAssets().open("operations.html")); }
                     catch (java.io.IOException e) {
@@ -94,7 +100,7 @@ public final class MainActivity extends Activity {
     }
     @Override public void onBackPressed() {
         if(web==null){super.onBackPressed();return;}
-        web.evaluateJavascript("(function(){var d=document.getElementById('review');if(d&&d.open){d.close();if(typeof pending!=='undefined')pending=null;return true;}return false;})()",result->{
+        web.evaluateJavascript("(function(){if(typeof handleAppBack==='function')return handleAppBack();var d=document.getElementById('review');if(d&&d.open){d.close();if(typeof pending!=='undefined')pending=null;return true;}return false;})()",result->{
             if(!"true".equals(result) && !isFinishing()){
                 if(web!=null && web.canGoBack())web.goBack();
                 else MainActivity.super.onBackPressed();
